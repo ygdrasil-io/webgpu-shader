@@ -20,7 +20,7 @@ internal class ShaderBuilderScopeImpl : ShaderBuilderScope {
     fun build(): ShaderSource {
         val source = StringBuilder()
         statements.forEach {
-            source.appendLine(it.toString())
+            source.append(it.toString())
         }
         return ShaderSource(
             source.toString()

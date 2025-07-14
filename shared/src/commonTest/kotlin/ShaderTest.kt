@@ -9,8 +9,7 @@ class SharedCommonTest {
     fun example() {
         // Given
         val exceptedSource = """
-@group(0) @binding(0) var<uniform> inputValue: f32;
-
+@group(0) @binding(0) var<uniform> uniform: f32;
 @vertex
 fn main(@builtin(position) pos: vec4f) -> @builtin(position) vec4f {
     return vec4f(pos.xyz * inputValue, 1.0);
@@ -25,6 +24,10 @@ fn main(@builtin(position) pos: vec4f) -> @builtin(position) vec4f {
 
             val main by fn<vec4f> {
 
+                body {
+
+                    returns(vec4f(uniform))
+                }
             }
 
         }.source
