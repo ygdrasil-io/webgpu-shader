@@ -3,7 +3,7 @@ package experiment.redo
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class SharedCommonTest {
+class ShaderTestTest {
 
     @Test
     fun example() {
