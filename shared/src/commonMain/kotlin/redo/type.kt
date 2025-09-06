@@ -13,7 +13,6 @@ interface f32 : ShaderType {
     override val name: String
         get() = "f32"
 }
-fun ShaderBuilderScope.f32(value: Double): f32 = getDefaultValue()
 
 interface f16 : ShaderType {
     override val name: String
