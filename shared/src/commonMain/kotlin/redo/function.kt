@@ -42,10 +42,12 @@ internal class FunctionStatement0<T: ShaderType>(
     val annotations: List<String> = emptyList(),
 ): ReadOnlyPropertyBaseStatement<Invocable0<T>>(scope, defaultValue) {
 
-    override fun toString(): String {
-        return "fn $propertyName() -> ${defaultValue.name} {"
+    override fun toString(): String = buildString {
+        annotations.forEach { annotation ->
+            append("@$annotation\n")
+        }
+        append("fn $propertyName() -> ${defaultValue.name} {")
     }
-
 }
 
 @PublishedApi
@@ -55,8 +57,11 @@ internal class FunctionStatement1<T: ShaderType, I1: ShaderType>(
     val annotations: List<String> = emptyList(),
 ): ReadOnlyPropertyBaseStatement<Invocable1<T, I1>>(scope, defaultValue) {
 
-    override fun toString(): String {
-        return "fn $propertyName() -> ${defaultValue.name} {"
+    override fun toString(): String = buildString {
+        annotations.forEach { annotation ->
+            append("@$annotation\n")
+        }
+        append("fn $propertyName() -> ${defaultValue.name} {")
     }
 
 }

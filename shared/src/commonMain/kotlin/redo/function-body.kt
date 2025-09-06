@@ -14,7 +14,7 @@ fun ShaderBodyBuilderScope.vec4f(input1: vec3f, input2: f32): ShaderType {
 }
 
 fun ShaderBodyBuilderScope.returns(type: ShaderType) {
-    push(ReturnStatement(this, type))
+    ReturnStatement(this, type)
 }
 
 internal class ReturnStatement(

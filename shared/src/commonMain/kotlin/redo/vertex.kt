@@ -7,7 +7,8 @@ inline fun ShaderBuilderScope.vertex(
 
     val statement = FunctionStatement0(
         this,
-        Invocable0Impl(defaultValue)
+        Invocable0Impl(defaultValue),
+        listOf("vertex")
     )
 
     ShaderFunctionBuilderScopeImpl(this)
