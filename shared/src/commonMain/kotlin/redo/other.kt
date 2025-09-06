@@ -29,5 +29,7 @@ internal inline fun <reified T : ShaderType> getDefaultValue(): T = when (T::cla
     f16::class -> object : f16 {}
     bool::class -> object : bool {}
     vec4f::class -> object : vec4f { }
+    vec3f::class -> object : vec3f { }
+    vec2f::class -> object : vec2f { }
     else -> throw IllegalArgumentException("Type not supported: ${T::class}")
 } as T

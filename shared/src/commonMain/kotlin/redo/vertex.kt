@@ -2,12 +2,12 @@ package experiment.redo
 
 inline fun ShaderBuilderScope.vertex(
     block: ShaderFunctionBuilderScope.() -> Unit
-): ReadOnlyPropertyBaseStatement<f32> {
+): ReadOnlyPropertyBaseStatement<Invocable0<f32>> {
     val defaultValue = getDefaultValue<f32>()
 
-    val statement = FunctionStatement(
+    val statement = FunctionStatement0(
         this,
-        defaultValue
+        Invocable0Impl(defaultValue)
     )
 
     ShaderFunctionBuilderScopeImpl(this)

@@ -1,13 +1,32 @@
 package experiment.redo
 
+import kotlin.jvm.JvmName
+
 inline fun <reified T : ShaderType> ShaderBuilderScope.fn(
     block: ShaderFunctionBuilderScope.() -> Unit
-): ReadOnlyPropertyBaseStatement<T> {
+): ReadOnlyPropertyBaseStatement<Invocable0<T>> {
     val defaultValue = getDefaultValue<T>()
 
-    val statement = FunctionStatement(
+    val statement = FunctionStatement0(
         this,
-        defaultValue
+        Invocable0Impl(defaultValue)
+    )
+
+    ShaderFunctionBuilderScopeImpl(this)
+        .block()
+
+    return statement
+}
+
+@JvmName("fn1")
+inline fun <reified T : ShaderType, reified I1 : ShaderType> ShaderBuilderScope.fn(
+    block: ShaderFunctionBuilderScope.() -> Unit
+): ReadOnlyPropertyBaseStatement<Invocable1<T, I1>> {
+    val defaultValue = getDefaultValue<T>()
+
+    val statement = FunctionStatement1(
+        this,
+        Invocable1Impl<T, I1>(defaultValue)
     )
 
     ShaderFunctionBuilderScopeImpl(this)
@@ -17,15 +36,29 @@ inline fun <reified T : ShaderType> ShaderBuilderScope.fn(
 }
 
 @PublishedApi
-internal class FunctionStatement<T: ShaderType>(
+internal class FunctionStatement0<T: ShaderType>(
     scope: ShaderBuilderScope,
-    defaultValue: T,
+    defaultValue: Invocable0<T>,
     val annotations: List<String> = emptyList(),
-): ReadOnlyPropertyBaseStatement<T>(scope, defaultValue) {
+): ReadOnlyPropertyBaseStatement<Invocable0<T>>(scope, defaultValue) {
 
     override fun toString(): String {
         return "fn $propertyName() -> ${defaultValue.name} {"
     }
+
+}
+
+@PublishedApi
+internal class FunctionStatement1<T: ShaderType, I1: ShaderType>(
+    scope: ShaderBuilderScope,
+    defaultValue: Invocable1<T, I1>,
+    val annotations: List<String> = emptyList(),
+): ReadOnlyPropertyBaseStatement<Invocable1<T, I1>>(scope, defaultValue) {
+
+    override fun toString(): String {
+        return "fn $propertyName() -> ${defaultValue.name} {"
+    }
+
 }
 
 @PublishedApi

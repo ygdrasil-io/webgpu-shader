@@ -9,7 +9,7 @@ inline fun ShaderFunctionBuilderScope.body(
     push(EndBlockStatement(this))
 }
 
-fun ShaderBodyBuilderScope.vec4f(input1: f32): ShaderType {
+fun ShaderBodyBuilderScope.vec4f(input1: vec3f, input2: f32): ShaderType {
     return getDefaultValue<vec4f>()
 }
 

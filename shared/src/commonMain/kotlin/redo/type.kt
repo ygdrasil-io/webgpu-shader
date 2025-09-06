@@ -13,6 +13,8 @@ interface f32 : ShaderType {
     override val name: String
         get() = "f32"
 }
+fun ShaderBuilderScope.f32(value: Double): f32 = getDefaultValue()
+
 interface f16 : ShaderType {
     override val name: String
         get() = "f16"
@@ -28,14 +30,26 @@ interface u32 : ShaderType {
 
 // Types vecteur 2D
 interface vec2<T : ShaderType> : ShaderType
-interface vec2f : vec2<f32>
+interface vec2f : vec2<f32> {
+
+    override val name: String
+        get() = "vec2f"
+}
 interface vec2h : vec2<f16>
 interface vec2i : vec2<i32>
 interface vec2u : vec2<u32>
 
 // Types vecteur 3D
-interface vec3<T : ShaderType> : ShaderType
-interface vec3f : vec3<f32>
+sealed interface vec3<T : ShaderType> : ShaderType
+interface vec3f : vec3<f32> {
+
+    operator fun times(value: f32): vec3f {
+        return getDefaultValue<vec3f>()
+    }
+
+    override val name: String
+        get() = "vec3f"
+}
 interface vec3h : vec3<f16>
 interface vec3i : vec3<i32>
 interface vec3u : vec3<u32>
@@ -43,6 +57,10 @@ interface vec3u : vec3<u32>
 // Types vecteur 4D
 interface vec4<T : ShaderType> : ShaderType
 interface vec4f : vec4<f32> {
+
+    val xyz: vec3f
+        get() = getDefaultValue<vec3f>()
+
     override val name: String
         get() = "vec4f"
 }
