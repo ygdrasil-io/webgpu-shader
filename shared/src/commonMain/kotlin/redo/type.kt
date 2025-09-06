@@ -42,7 +42,9 @@ interface vec2u : vec2<u32>
 sealed interface vec3<T : ShaderType> : ShaderType
 interface vec3f : vec3<f32> {
 
+    context(scope: ShaderBuilderScope)
     operator fun times(value: f32): vec3f {
+        OperatorStatement(scope, Operator.TIMES)
         return getDefaultValue<vec3f>()
     }
 
@@ -57,8 +59,12 @@ interface vec3u : vec3<u32>
 interface vec4<T : ShaderType> : ShaderType
 interface vec4f : vec4<f32> {
 
+    context(scope: ShaderBuilderScope)
     val xyz: vec3f
-        get() = getDefaultValue<vec3f>()
+        get() {
+            PropertyStatement(scope, "xyz")
+            return getDefaultValue<vec3f>()
+        }
 
     override val name: String
         get() = "vec4f"

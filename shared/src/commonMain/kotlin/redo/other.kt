@@ -7,6 +7,7 @@ sealed class ReadOnlyPropertyBaseStatement<T>(scope: ShaderBuilderScope, val def
 
     operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
         init(property)
+        VariableStatement(scope, propertyName!!)
         return defaultValue
     }
 
