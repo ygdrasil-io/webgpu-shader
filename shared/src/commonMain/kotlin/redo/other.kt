@@ -1,7 +1,11 @@
 package experiment.redo
 import kotlin.reflect.KProperty
 
-sealed class ReadOnlyPropertyBaseStatement<T>(scope: ShaderBuilderScope, val defaultValue: T) : BaseStatement(scope) {
+sealed class ReadOnlyPropertyBaseStatement<T>(
+    scope: ShaderBuilderScope,
+    val defaultValue: T,
+    val isFunction: Boolean = false
+) : BaseStatement(scope) {
     var propertyName: String? = null
         private set
 

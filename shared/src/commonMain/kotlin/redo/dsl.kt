@@ -12,9 +12,18 @@ data class ShaderSource(val source: String)
 internal class ShaderBuilderScopeImpl : ShaderBuilderScope {
 
     val statements = mutableListOf<BaseStatement>()
+    val partialStatements = mutableListOf<BaseStatement>()
 
     override fun push(statement: BaseStatement) {
-        statements.add(statement)
+
+        when (statement) {
+            is PropertyStatement, is VariableStatement, is OperatorStatement, is ConstantStatement -> {
+                partialStatements.add(statement)
+            }
+
+            else -> statements.add(statement)
+        }
+
     }
 
     fun build(): ShaderSource {
