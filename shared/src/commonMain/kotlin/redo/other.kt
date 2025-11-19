@@ -9,9 +9,15 @@ sealed class ReadOnlyPropertyBaseStatement<T>(
     var propertyName: String? = null
         private set
 
-    operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
+    operator fun provideDelegate(thisRef: Any?, property: KProperty<*>): ReadOnlyPropertyBaseStatement<T> {
         init(property)
-        VariableStatement(scope, propertyName!!)
+        return this
+    }
+
+    operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
+        if (!isFunction) {
+            VariableStatement(scope, propertyName!!)
+        }
         return defaultValue
     }
 

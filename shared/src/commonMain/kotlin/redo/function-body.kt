@@ -13,6 +13,10 @@ fun ShaderBodyBuilderScope.vec4f(input1: vec3f, input2: f32): ShaderType {
     return getDefaultValue<vec4f>()
 }
 
+fun ShaderBodyBuilderScope.vec4f(input1: f32, input2: f32): ShaderType {
+    return getDefaultValue<vec4f>()
+}
+
 fun ShaderBodyBuilderScope.returns(type: ShaderType) {
     ReturnStatement(this, type)
 }
