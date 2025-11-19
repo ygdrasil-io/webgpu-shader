@@ -72,3 +72,9 @@ kotlin {
         minSdk = libs.versions.android.minSdk.get().toInt()
     }
 }*/
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(22))
+    }
+}
