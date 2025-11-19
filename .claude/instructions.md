@@ -72,6 +72,23 @@ This is a Kotlin Multiplatform DSL for generating WGSL (WebGPU Shading Language)
   - Use JVM tests during development for quick feedback
   - Run full suite before committing/pushing changes
 
+#### Understanding Test Results
+- **Cache behavior**: If tests show `FROM-CACHE` or `UP-TO-DATE`, it means the code hasn't been modified since last run
+- **Test reports location**: `./shared/build/reports/tests/`
+  - `jvmTest/` - JVM test results (HTML)
+  - `wasmJsTest/` - WebAssembly test results (HTML)
+  - `iosSimulatorArm64Test/` - iOS simulator test results (HTML)
+  - `allTests/` - Aggregated results from all platforms (HTML)
+- **LLM-friendly format**: `./shared/build/test-results/{platform}/TEST-*.xml`
+  - JUnit XML format (concise, structured)
+  - Contains test suite summary, test cases, and failure details
+  - Much easier to parse than HTML reports
+  - Example: `cat ./shared/build/test-results/jvmTest/TEST-*.xml`
+- **Analyzing results**: Don't hesitate to scan the report directories yourself to be exhaustive
+  - For quick analysis: read XML files directly
+  - For detailed view: open `index.html` in report directories
+  - Check `classes/` folder for individual test class reports
+
 ### Implementation Rules
 1. **Always extend `BaseStatement`** for new shader elements
 2. **Call `scope.push(this)`** in statement constructors
