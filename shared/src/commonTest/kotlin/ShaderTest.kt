@@ -45,6 +45,6 @@ fn mainVertex(@builtin(position) pos: vec4f) -> @builtin(position) vec4f {
         }.source
 
         //Then
-        assertEquals(source, exceptedSource)
+        assertEquals(exceptedSource, source)
     }
 }
