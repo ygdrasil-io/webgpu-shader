@@ -1,5 +1,18 @@
 # WebGPU Shader DSL - Development Guidelines
 
+## Project Structure
+```
+shared/
+├── src/
+│   ├── commonMain/
+│   │   └── kotlin/              # Core implementation
+│   └── commonTest/
+│       └── kotlin/              # Shared tests
+├── build.gradle.kts
+├── settings.gradle.kts
+└── ... (build config files)
+```
+
 ## Project Overview
 This is a Kotlin Multiplatform DSL for generating WGSL (WebGPU Shading Language) code through a type-safe builder pattern.
 
