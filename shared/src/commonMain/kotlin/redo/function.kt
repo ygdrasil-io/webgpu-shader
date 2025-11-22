@@ -14,7 +14,8 @@ inline fun <reified T : ShaderType> ShaderBuilderScope.fn(
 
     ShaderFunctionBuilderScopeImpl(this)
         .block()
-
+    // Add end block statement to stack
+    EndBlockStatement(this)
     return statement
 }
 
@@ -47,7 +48,7 @@ internal class FunctionStatement0<T: ShaderType>(
         annotations.forEach { annotation ->
             append("@$annotation\n")
         }
-        append("fn $propertyName() -> ${defaultValue.name} {")
+        append("fn $propertyName() -> ${defaultValue.name} {\n")
     }
 }
 
@@ -62,7 +63,7 @@ internal class FunctionStatement1<T: ShaderType, I1: ShaderType>(
         annotations.forEach { annotation ->
             append("@$annotation\n")
         }
-        append("fn $propertyName() -> ${defaultValue.name} {")
+        append("fn $propertyName() -> ${defaultValue.name} {\n")
     }
 
 }

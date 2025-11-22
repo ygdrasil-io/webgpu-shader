@@ -5,8 +5,6 @@ inline fun ShaderFunctionBuilderScope.body(
 ) {
     ShaderBodyBuilderScopeImpl(this)
         .block()
-
-    push(EndBlockStatement(this))
 }
 
 fun ShaderBodyBuilderScope.vec4f(input1: vec3f, input2: f32): ShaderType {
