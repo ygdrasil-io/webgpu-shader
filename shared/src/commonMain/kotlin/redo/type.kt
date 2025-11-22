@@ -115,8 +115,8 @@ interface array<T : ShaderType> : ShaderType
 interface array_sized<T : ShaderType, N : Int> : ShaderType
 
 // Types atomiques
-interface iatomic<T : ShaderType> : ShaderType where T : i32
-interface uatomic<T : ShaderType> : ShaderType where T : u32
+interface iatomic<T> : ShaderType where T : ShaderType, T : i32
+interface uatomic<T> : ShaderType where T : ShaderType, T : u32
 
 // Types de texture
 interface texture_1d<T : ShaderType> : ShaderType
