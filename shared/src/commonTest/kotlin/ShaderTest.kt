@@ -3,7 +3,7 @@ package experiment.redo
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class ShaderTestTest {
+class ShaderTest {
 
     @Test
     fun `test 1 - simple uniform declaration`() {
