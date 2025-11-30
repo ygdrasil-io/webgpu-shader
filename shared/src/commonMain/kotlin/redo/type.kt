@@ -14,9 +14,10 @@ interface f32 : ShaderType {
         get() = "f32"
 
     context(scope: ShaderBuilderScope)
-    operator fun plus(other: f32) {
+    operator fun plus(other: f32): ShaderType {
         OperatorStatement(scope, Operator.PLUS)
             .also { scope.push(it) }
+        return getDefaultValue()
     }
 }
 

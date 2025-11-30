@@ -110,11 +110,11 @@ class ShaderTest {
         """.trimIndent()
 
         val actual = shader {
-            val myFunction by fn<f32, f32> {
+            val myFunction by fn<f32, f32, f32> {
                 val x by input<f32>()
-                body {
-                    returns(x)
-                }
+                val y by input<f32>()
+
+                returns(x + y)
             }
         }.source
 
