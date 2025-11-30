@@ -29,7 +29,14 @@ data class ShaderSource(val source: String)
 
     }
 
-    fun build(): ShaderSource {
+     override fun pop(): BaseStatement {
+         partialStatements.removeLastOrNull()
+             ?.let { return it }
+
+         error("No partial statement to pop")
+     }
+
+     fun build(): ShaderSource {
         val source = StringBuilder()
         statements.forEach {
             source.append(it.toString())

@@ -1,17 +1,23 @@
 package experiment.redo
 
-fun ShaderBuilderScope.f32(value: Double): f32 {
-    ConstantStatement(this, value.toString())
+context(scope: ShaderBuilderScope)
+fun f32(value: Double): f32 {
+    ConstantStatement(scope, value.toString())
+        .also { scope.push(it) }
     return getDefaultValue()
 }
 
-fun ShaderBuilderScope.i32(value: Int): f32 {
-    ConstantStatement(this, value.toString())
+context(scope: ShaderBuilderScope)
+fun i32(value: Int): f32 {
+    ConstantStatement(scope, value.toString())
+        .also { scope.push(it) }
     return getDefaultValue()
 }
 
-fun ShaderBuilderScope.bool(value: Boolean): f32 {
-    ConstantStatement(this, value.toString())
+context(scope: ShaderBuilderScope)
+fun bool(value: Boolean): f32 {
+    ConstantStatement(scope, value.toString())
+        .also { scope.push(it) }
     return getDefaultValue()
 }
 

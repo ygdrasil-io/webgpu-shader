@@ -112,6 +112,10 @@ internal class ShaderFunctionBuilderScopeImpl(
             else -> parent.push(statement)
         }
     }
+
+    override fun pop(): BaseStatement {
+        return parent.pop()
+    }
 }
 
 internal interface FunctionWithParameters {

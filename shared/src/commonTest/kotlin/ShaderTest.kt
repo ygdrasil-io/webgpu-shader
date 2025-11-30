@@ -13,6 +13,7 @@ class ShaderTestTest {
         """.trimIndent()
 
         val actual = shader {
+            @Suppress("UNUSED_VARIABLE")
             val myUniform by uniform<f32>(binding = 0, group = 0)
         }.source
 
@@ -28,6 +29,7 @@ class ShaderTestTest {
         """.trimIndent()
 
         val actual = shader {
+            @Suppress("UNUSED_VARIABLE")
             val myFunction by fn<f32> {
 
             }
@@ -45,7 +47,9 @@ class ShaderTestTest {
         """.trimIndent()
 
         val actual = shader {
+            @Suppress("UNUSED_VARIABLE")
             val myFunction by fn<f32, f32> {
+                @Suppress("UNUSED_VARIABLE")
                 val x by input<f32>()
 
             }
@@ -58,7 +62,7 @@ class ShaderTestTest {
     fun `test 4 - function with simple return constant`() {
         val expected = """
             fn myFunction() -> f32 {
-                return 1.0;
+            ${"\t"}return 1.0;
             }
             
         """.trimIndent()

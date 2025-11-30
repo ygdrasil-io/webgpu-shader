@@ -15,16 +15,21 @@ fun ShaderBodyBuilderScope.vec4f(input1: f32, input2: f32): ShaderType {
     return getDefaultValue<vec4f>()
 }
 
-fun ShaderBodyBuilderScope.returns(type: ShaderType) {
-    ReturnStatement(this, type)
+context(scope: ShaderFunctionBuilderScope)
+fun returns(type: ShaderType) {
+    val subStatement = scope.pop()
+    ReturnStatement(scope, type, subStatement)
+        .also { scope.push(it) }
 }
 
 internal class ReturnStatement(
-    scope: ShaderBodyBuilderScope,
-    val type: ShaderType
+    scope: ShaderFunctionBuilderScope,
+    val type: ShaderType,
+    val subStatement: BaseStatement
 ) : BaseStatement(scope) {
+
     override fun toString(): String {
-        return "return "
+        return "\treturn $subStatement;\n"
     }
 }
 
@@ -34,5 +39,9 @@ internal class ShaderBodyBuilderScopeImpl(
 ): ShaderBodyBuilderScope {
     override fun push(statement: BaseStatement) {
         parent.push(statement)
+    }
+
+    override fun pop(): BaseStatement {
+        return parent.pop()
     }
 }
