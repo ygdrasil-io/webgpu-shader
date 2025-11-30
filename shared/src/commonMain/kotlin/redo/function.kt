@@ -2,38 +2,45 @@ package experiment.redo
 
 import kotlin.jvm.JvmName
 
-inline fun <reified T : ShaderType> ShaderBuilderScope.fn(
+context(scope: ShaderBuilderScope)
+inline fun <reified T : ShaderType> fn(
     block: ShaderFunctionBuilderScope.() -> Unit
 ): ReadOnlyPropertyBaseStatement<Invocable0<T>> {
     val defaultValue = getDefaultValue<T>()
 
     val statement = FunctionStatement0(
-        this,
+        scope,
         Invocable0Impl(defaultValue)
-    )
+    ).also { scope.push(it) }
 
-    ShaderFunctionBuilderScopeImpl(this)
+    ShaderFunctionBuilderScopeImpl(scope, statement)
         .block()
     // Add end block statement to stack
-    EndBlockStatement(this)
+    EndBlockStatement(scope)
+        .also { scope.push(it) }
     return statement
 }
 
+context(scope: ShaderBuilderScope)
 @JvmName("fn1")
-inline fun <reified T : ShaderType, reified I1 : ShaderType> ShaderBuilderScope.fn(
+inline fun <reified T : ShaderType, reified I1 : ShaderType> fn(
     block: ShaderFunctionBuilderScope.() -> Unit
 ): ReadOnlyPropertyBaseStatement<Invocable1<T, I1>> {
     val defaultValue = getDefaultValue<T>()
     val i1 = getDefaultValue<I1>()
 
     val statement = FunctionStatement1(
-        this,
-        Invocable1Impl<T, I1>(defaultValue)
-    )
+        scope,
+        Invocable1Impl<T, I1>(defaultValue),
+        listOf(i1)
+    ).also { scope.push(it) }
 
-    ShaderFunctionBuilderScopeImpl(this)
+    ShaderFunctionBuilderScopeImpl(scope, statement)
         .block()
 
+    // Add end block statement to stack
+    EndBlockStatement(scope)
+        .also { scope.push(it) }
     return statement
 }
 
@@ -42,13 +49,18 @@ internal class FunctionStatement0<T: ShaderType>(
     scope: ShaderBuilderScope,
     defaultValue: Invocable0<T>,
     val annotations: List<String> = emptyList(),
-): ReadOnlyPropertyBaseStatement<Invocable0<T>>(scope, defaultValue, isFunction = true) {
+): ReadOnlyPropertyBaseStatement<Invocable0<T>>(scope, defaultValue, isFunction = true),
+    FunctionWithParameters {
 
     override fun toString(): String = buildString {
         annotations.forEach { annotation ->
             append("@$annotation\n")
         }
         append("fn $propertyName() -> ${defaultValue.name} {\n")
+    }
+
+    override fun addInput(input: FunctionInput<*>) {
+        error("Too many parameters for function")
     }
 }
 
@@ -56,24 +68,52 @@ internal class FunctionStatement0<T: ShaderType>(
 internal class FunctionStatement1<T: ShaderType, I1: ShaderType>(
     scope: ShaderBuilderScope,
     defaultValue: Invocable1<T, I1>,
+    val expectedInputs: List<ShaderType>,
     val annotations: List<String> = emptyList(),
-): ReadOnlyPropertyBaseStatement<Invocable1<T, I1>>(scope, defaultValue, isFunction = true) {
+): ReadOnlyPropertyBaseStatement<Invocable1<T, I1>>(scope, defaultValue, isFunction = true),
+    FunctionWithParameters {
+
+    private val inputs = mutableListOf<FunctionInput<*>>()
 
     override fun toString(): String = buildString {
         annotations.forEach { annotation ->
             append("@$annotation\n")
         }
-        append("fn $propertyName() -> ${defaultValue.name} {\n")
+        val parameters = inputs.joinToString(", ") { it.toString() }.orEmpty()
+        append("fn $propertyName($parameters) -> ${defaultValue.name} {\n")
+    }
+
+    override fun addInput(input: FunctionInput<*>) {
+        when {
+            inputs.isNotEmpty() -> {
+                error("Too many parameters for function")
+            }
+            expectedInputs[inputs.size] != input.defaultValue -> {
+                error("Parameter type mismatch ${input.defaultValue::class.simpleName}")
+            }
+            else -> inputs.add(input)
+        }
     }
 
 }
 
 @PublishedApi
 internal class ShaderFunctionBuilderScopeImpl(
-    private val parent: ShaderBuilderScope
+    private val parent: ShaderBuilderScope,
+    private val functionStatement: FunctionWithParameters
 ): ShaderFunctionBuilderScope {
-    override fun push(statement: BaseStatement) {
-        parent.push(statement)
-    }
 
+    override fun push(statement: BaseStatement) {
+        when (statement) {
+            is FunctionInput<*> -> {
+                functionStatement.addInput(statement)
+            }
+
+            else -> parent.push(statement)
+        }
+    }
+}
+
+internal interface FunctionWithParameters {
+    fun addInput(input: FunctionInput<*>)
 }

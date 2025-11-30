@@ -60,12 +60,15 @@ sealed class PropertyBaseStatement<T>(
 }
 
 @PublishedApi
-internal inline fun <reified T : ShaderType> getDefaultValue(): T = when (T::class) {
-    f32::class -> object : f32 {}
-    f16::class -> object : f16 {}
-    bool::class -> object : bool {}
-    vec4f::class -> object : vec4f { }
-    vec3f::class -> object : vec3f { }
-    vec2f::class -> object : vec2f { }
-    else -> throw IllegalArgumentException("Type not supported: ${T::class}")
-} as T
+internal inline fun <reified T : ShaderType> getDefaultValue(): T = (typeInstance[T::class] as T?)
+    ?: error("Type not supported: ${T::class}")
+
+@PublishedApi
+internal val typeInstance = mapOf(
+    f32::class to object : f32 {},
+    f16::class to object : f16 {},
+    bool::class to object : bool {},
+    vec4f::class to object : vec4f {},
+    vec3f::class to object : vec3f {},
+    vec2f::class to object : vec2f {}
+)

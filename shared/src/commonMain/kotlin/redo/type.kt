@@ -16,6 +16,7 @@ interface f32 : ShaderType {
     context(scope: ShaderBuilderScope)
     operator fun plus(other: f32) {
         OperatorStatement(scope, Operator.PLUS)
+            .also { scope.push(it) }
     }
 }
 

@@ -29,8 +29,7 @@ class ShaderTestTest {
 
         val actual = shader {
             val myFunction by fn<f32> {
-                body {
-                }
+
             }
         }.source
 
@@ -48,10 +47,7 @@ class ShaderTestTest {
         val actual = shader {
             val myFunction by fn<f32, f32> {
                 val x by input<f32>()
-                body {
-                    var test2 by local<f32>()
-                    val test = f32(1.0) + x
-                }
+
             }
         }.source
 

@@ -1,11 +1,6 @@
 package experiment.redo
 
-abstract class BaseStatement(val scope: ShaderBuilderScope) {
-
-    init {
-        scope.push(this)
-    }
-}
+abstract class BaseStatement(open val scope: ShaderBuilderScope)
 
 internal class VariableStatement(
     scope: ShaderBuilderScope,

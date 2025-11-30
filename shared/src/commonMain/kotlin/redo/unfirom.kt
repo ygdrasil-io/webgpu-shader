@@ -13,7 +13,8 @@ internal class UniformStatement<T: ShaderType>(
     }
 }
 
-inline fun <reified T : ShaderType> ShaderBuilderScope.uniform(
+context(scope: ShaderBuilderScope)
+inline fun <reified T : ShaderType> uniform(
     binding: Int, group: Int
 ): ReadOnlyPropertyBaseStatement<T> {
     val defaultValue = getDefaultValue<T>()
@@ -21,7 +22,7 @@ inline fun <reified T : ShaderType> ShaderBuilderScope.uniform(
     return UniformStatement(
         binding,
         group,
-        this,
+        scope,
         defaultValue
-    )
+    ).also { scope.push(it) }
 }

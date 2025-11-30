@@ -11,7 +11,7 @@ inline fun ShaderBuilderScope.vertex(
         listOf("vertex")
     )
 
-    ShaderFunctionBuilderScopeImpl(this)
+    ShaderFunctionBuilderScopeImpl(this, statement)
         .block()
 
     return statement

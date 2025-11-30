@@ -7,15 +7,16 @@ internal class FunctionInput<T: ShaderType>(
 ): ReadOnlyPropertyBaseStatement<T>(scope, defaultValue) {
 
     override fun toString(): String {
-        return "$propertyName: ${defaultValue.name};\n"
+        return "$propertyName: ${defaultValue.name}"
     }
 }
 
-inline fun <reified T : ShaderType> ShaderFunctionBuilderScope.input() : ReadOnlyPropertyBaseStatement<T> {
+context(scope: ShaderFunctionBuilderScope)
+inline fun <reified T : ShaderType> input() : ReadOnlyPropertyBaseStatement<T> {
     val defaultValue = getDefaultValue<T>()
 
     return FunctionInput(
-        this,
+        scope,
         defaultValue
-    )
+    ).also { scope.push(it) }
 }
