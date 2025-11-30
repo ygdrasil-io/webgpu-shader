@@ -5,6 +5,8 @@ import kotlin.test.assertEquals
 
 class ShaderTest {
 
+    val tab = "\t"
+
     @Test
     fun `test 1 - simple uniform declaration`() {
         val expected = """
@@ -62,7 +64,7 @@ class ShaderTest {
     fun `test 4 - function with simple return constant`() {
         val expected = """
             fn myFunction() -> f32 {
-            ${"\t"}return 1.0;
+            ${tab}return 1.0;
             }
             
         """.trimIndent()
@@ -82,7 +84,7 @@ class ShaderTest {
     fun `test 5 - function with return variable`() {
         val expected = """
             fn myFunction(x: f32) -> f32 {
-                return x;
+            ${tab}return x;
             }
             
         """.trimIndent()
@@ -90,9 +92,8 @@ class ShaderTest {
         val actual = shader {
             val myFunction by fn<f32, f32> {
                 val x by input<f32>()
-                body {
-                    returns(x)
-                }
+
+                returns(x)
             }
         }.source
 
