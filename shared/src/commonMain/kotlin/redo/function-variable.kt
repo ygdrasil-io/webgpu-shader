@@ -11,11 +11,12 @@ internal class VariableInput<T: ShaderType>(
     }
 }
 
-inline fun <reified T : ShaderType> ShaderFunctionBuilderScope.local() : PropertyBaseStatement<T> {
+context(scope: ShaderFunctionBuilderScope)
+inline fun <reified T : ShaderType> local() : PropertyBaseStatement<T> {
     val defaultValue = getDefaultValue<T>()
 
     return VariableInput(
-        this,
+        scope,
         defaultValue
     )
 }

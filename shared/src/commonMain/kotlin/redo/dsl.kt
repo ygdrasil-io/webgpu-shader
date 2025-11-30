@@ -9,7 +9,7 @@ fun shader(block: ShaderBuilderScope.() -> Unit): ShaderSource {
 
 data class ShaderSource(val source: String)
 
-internal class ShaderBuilderScopeImpl : ShaderBuilderScope {
+ class ShaderBuilderScopeImpl : ShaderBuilderScope {
 
     val statements = mutableListOf<BaseStatement>()
     val partialStatements = mutableListOf<BaseStatement>()

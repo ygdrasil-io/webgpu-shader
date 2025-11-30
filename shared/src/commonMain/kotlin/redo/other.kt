@@ -28,10 +28,35 @@ sealed class ReadOnlyPropertyBaseStatement<T>(
     }
 }
 
-sealed class PropertyBaseStatement<T>(scope: ShaderBuilderScope, defaultValue: T) : ReadOnlyPropertyBaseStatement<T>(scope, defaultValue) {
-    operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
-        init(property)
-    }
+sealed class PropertyBaseStatement<T>(
+     scope: ShaderBuilderScope,
+     val defaultValue: T,
+     val isFunction: Boolean = false
+ ) : BaseStatement(scope) {
+     var propertyName: String? = null
+         private set
+
+     operator fun provideDelegate(thisRef: Any?, property: KProperty<*>): PropertyBaseStatement<T> {
+         init(property)
+         return this
+     }
+
+     operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
+         if (!isFunction) {
+             VariableStatement(scope, propertyName!!)
+         }
+         return defaultValue
+     }
+
+     protected fun init(property: KProperty<*>) {
+         // Already initialized
+         if (propertyName != null) return
+         propertyName = property.name
+     }
+
+     operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
+
+     }
 }
 
 @PublishedApi
