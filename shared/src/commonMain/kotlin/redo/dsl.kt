@@ -17,7 +17,10 @@ internal class ShaderBuilderScopeImpl : ShaderBuilderScope {
     override fun push(statement: BaseStatement) {
 
         when (statement) {
-            is PropertyStatement, is VariableStatement, is OperatorStatement, is ConstantStatement -> {
+            is PropertyStatement,
+            is VariableStatement,
+            is OperatorStatement,
+            is ConstantStatement -> {
                 partialStatements.add(statement)
             }
 

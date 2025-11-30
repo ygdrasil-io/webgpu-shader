@@ -12,6 +12,11 @@ interface bool : ShaderType {
 interface f32 : ShaderType {
     override val name: String
         get() = "f32"
+
+    context(scope: ShaderBuilderScope)
+    operator fun plus(other: f32) {
+        OperatorStatement(scope, Operator.PLUS)
+    }
 }
 
 interface f16 : ShaderType {

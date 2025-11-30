@@ -28,7 +28,8 @@ inline fun <reified T : ShaderType, reified I1 : ShaderType> ShaderBuilderScope.
 
     val statement = FunctionStatement1(
         this,
-        Invocable1Impl<T, I1>(defaultValue)
+        Invocable1Impl<T, I1>(defaultValue),
+        i1
     )
 
     ShaderFunctionBuilderScopeImpl(this)
@@ -56,8 +57,12 @@ internal class FunctionStatement0<T: ShaderType>(
 internal class FunctionStatement1<T: ShaderType, I1: ShaderType>(
     scope: ShaderBuilderScope,
     defaultValue: Invocable1<T, I1>,
+    i1: I1,
     val annotations: List<String> = emptyList(),
 ): ReadOnlyPropertyBaseStatement<Invocable1<T, I1>>(scope, defaultValue, isFunction = true) {
+
+    @PublishedApi
+    internal val input1 by FunctionInput(scope, i1)
 
     override fun toString(): String = buildString {
         annotations.forEach { annotation ->
