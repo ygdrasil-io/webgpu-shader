@@ -143,7 +143,7 @@ internal class FunctionStatement2<T: ShaderType, I1: ShaderType, I2: ShaderType>
 
     override fun addInput(input: FunctionInput<*>) {
         when {
-            inputs.isNotEmpty() -> {
+            inputs.size == 2 -> {
                 error("Too many parameters for function")
             }
             expectedInputs[inputs.size] != input.defaultValue -> {

@@ -17,7 +17,7 @@ interface f32 : ShaderType {
     operator fun plus(other: f32): ShaderType {
         OperatorStatement(scope, Operator.PLUS)
             .also { scope.push(it) }
-        return getDefaultValue()
+        return getDefaultValue<f32>()
     }
 }
 
