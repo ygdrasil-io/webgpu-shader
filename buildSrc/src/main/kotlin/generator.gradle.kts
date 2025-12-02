@@ -1,0 +1,1 @@
+tasks.register<CodeGeneratorTask>("generate-code")
