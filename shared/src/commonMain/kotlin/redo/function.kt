@@ -44,6 +44,30 @@ inline fun <reified T : ShaderType, reified I1 : ShaderType> fn(
     return statement
 }
 
+context(scope: ShaderBuilderScope)
+@JvmName("fn2")
+inline fun <reified T : ShaderType, reified I1 : ShaderType, reified I2 : ShaderType> fn(
+    block: ShaderFunctionBuilderScope.() -> Unit
+): ReadOnlyPropertyBaseStatement<Invocable2<T, I1, I2>> {
+    val defaultValue = getDefaultValue<T>()
+    val i1 = getDefaultValue<I1>()
+    val i2 = getDefaultValue<I2>()
+
+    val statement = FunctionStatement2(
+        scope,
+        Invocable2Impl<T, I1, I2>(defaultValue),
+        listOf(i1, i2)
+    ).also { scope.push(it) }
+
+    ShaderFunctionBuilderScopeImpl(scope, statement)
+        .block()
+
+    // Add end block statement to stack
+    EndBlockStatement(scope)
+        .also { scope.push(it) }
+    return statement
+}
+
 @PublishedApi
 internal class FunctionStatement0<T: ShaderType>(
     scope: ShaderBuilderScope,
@@ -71,6 +95,40 @@ internal class FunctionStatement1<T: ShaderType, I1: ShaderType>(
     val expectedInputs: List<ShaderType>,
     val annotations: List<String> = emptyList(),
 ): ReadOnlyPropertyBaseStatement<Invocable1<T, I1>>(scope, defaultValue, isFunction = true),
+    FunctionWithParameters {
+
+    private val inputs = mutableListOf<FunctionInput<*>>()
+
+    override fun toString(): String = buildString {
+        annotations.forEach { annotation ->
+            append("@$annotation\n")
+        }
+        val parameters = inputs.joinToString(", ") { it.toString() }.orEmpty()
+        append("fn $propertyName($parameters) -> ${defaultValue.name} {\n")
+    }
+
+    override fun addInput(input: FunctionInput<*>) {
+        when {
+            inputs.isNotEmpty() -> {
+                error("Too many parameters for function")
+            }
+            expectedInputs[inputs.size] != input.defaultValue -> {
+                error("Parameter type mismatch ${input.defaultValue::class.simpleName}")
+            }
+            else -> inputs.add(input)
+        }
+    }
+
+}
+
+
+@PublishedApi
+internal class FunctionStatement2<T: ShaderType, I1: ShaderType, I2: ShaderType>(
+    scope: ShaderBuilderScope,
+    defaultValue: Invocable2<T, I1, I2>,
+    val expectedInputs: List<ShaderType>,
+    val annotations: List<String> = emptyList(),
+): ReadOnlyPropertyBaseStatement<Invocable2<T, I1, I2>>(scope, defaultValue, isFunction = true),
     FunctionWithParameters {
 
     private val inputs = mutableListOf<FunctionInput<*>>()
