@@ -32,7 +32,7 @@ open class CodeGeneratorTask : DefaultTask() {
     fun generate(outputDir: File) {
         outputDir.mkdirs()
 
-        val fileSpec = FileSpec.builder("generated", "GeneratedCode")
+        FileSpec.builder("experiment.redo", "GeneratedCode")
             .addType(
                 TypeSpec.objectBuilder("GeneratedCode")
                     .addProperty(
@@ -50,7 +50,7 @@ open class CodeGeneratorTask : DefaultTask() {
                     .build()
             )
             .build()
+            .also { outputDir.resolve("function.generated.kt").writeText(it.toString()) }
 
-        fileSpec.writeTo(outputDir)
     }
 }
