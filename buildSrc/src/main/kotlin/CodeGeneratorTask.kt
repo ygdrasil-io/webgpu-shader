@@ -25,7 +25,7 @@ open class CodeGeneratorTask : DefaultTask() {
             project.layout.projectDirectory
                 .dir("shared")
                 .dir("src")
-                .dir("commonMain")
+                .dir("commonGenerated")
                 .dir("kotlin")
         )
     }

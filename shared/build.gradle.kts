@@ -49,8 +49,10 @@ kotlin {
     }
 
     sourceSets {
-        commonMain.dependencies {
-            // put your Multiplatform dependencies here
+        commonMain {
+            kotlin.srcDir(
+                layout.projectDirectory.dir("src").dir("commonGenerated").dir("kotlin")
+            )
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
