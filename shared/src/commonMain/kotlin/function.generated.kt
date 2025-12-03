@@ -2,6 +2,7 @@
 
 package experiment.redo
 
+import kotlin.PublishedApi
 import kotlin.String
 
 public interface Invocable0<T : ShaderType> : ShaderType {
@@ -355,11 +356,149 @@ public interface Invocable20<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I
   ): T = defaultValue
 }
 
-/**
- * Code généré automatiquement avec KotlinPoet
- */
-public object GeneratedCode {
-  public val TIMESTAMP: String = "1764729145540"
+@PublishedApi
+internal class Invocable0Impl<T : ShaderType>(
+  override val defaultValue: T,
+) : Invocable0<T> {
+  override val name: String = defaultValue.name
+}
 
-  public fun hello(): String = "Hello from generated code!"
+@PublishedApi
+internal class Invocable1Impl<T : ShaderType, I1 : ShaderType>(
+  override val defaultValue: T,
+) : Invocable1<T, I1> {
+  override val name: String = defaultValue.name
+}
+
+@PublishedApi
+internal class Invocable2Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType>(
+  override val defaultValue: T,
+) : Invocable2<T, I1, I2> {
+  override val name: String = defaultValue.name
+}
+
+@PublishedApi
+internal class Invocable3Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType>(
+  override val defaultValue: T,
+) : Invocable3<T, I1, I2, I3> {
+  override val name: String = defaultValue.name
+}
+
+@PublishedApi
+internal class Invocable4Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType, I4 : ShaderType>(
+  override val defaultValue: T,
+) : Invocable4<T, I1, I2, I3, I4> {
+  override val name: String = defaultValue.name
+}
+
+@PublishedApi
+internal class Invocable5Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType, I4 : ShaderType, I5 : ShaderType>(
+  override val defaultValue: T,
+) : Invocable5<T, I1, I2, I3, I4, I5> {
+  override val name: String = defaultValue.name
+}
+
+@PublishedApi
+internal class Invocable6Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType, I4 : ShaderType, I5 : ShaderType, I6 : ShaderType>(
+  override val defaultValue: T,
+) : Invocable6<T, I1, I2, I3, I4, I5, I6> {
+  override val name: String = defaultValue.name
+}
+
+@PublishedApi
+internal class Invocable7Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType, I4 : ShaderType, I5 : ShaderType, I6 : ShaderType, I7 : ShaderType>(
+  override val defaultValue: T,
+) : Invocable7<T, I1, I2, I3, I4, I5, I6, I7> {
+  override val name: String = defaultValue.name
+}
+
+@PublishedApi
+internal class Invocable8Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType, I4 : ShaderType, I5 : ShaderType, I6 : ShaderType, I7 : ShaderType, I8 : ShaderType>(
+  override val defaultValue: T,
+) : Invocable8<T, I1, I2, I3, I4, I5, I6, I7, I8> {
+  override val name: String = defaultValue.name
+}
+
+@PublishedApi
+internal class Invocable9Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType, I4 : ShaderType, I5 : ShaderType, I6 : ShaderType, I7 : ShaderType, I8 : ShaderType, I9 : ShaderType>(
+  override val defaultValue: T,
+) : Invocable9<T, I1, I2, I3, I4, I5, I6, I7, I8, I9> {
+  override val name: String = defaultValue.name
+}
+
+@PublishedApi
+internal class Invocable10Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType, I4 : ShaderType, I5 : ShaderType, I6 : ShaderType, I7 : ShaderType, I8 : ShaderType, I9 : ShaderType, I10 : ShaderType>(
+  override val defaultValue: T,
+) : Invocable10<T, I1, I2, I3, I4, I5, I6, I7, I8, I9, I10> {
+  override val name: String = defaultValue.name
+}
+
+@PublishedApi
+internal class Invocable11Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType, I4 : ShaderType, I5 : ShaderType, I6 : ShaderType, I7 : ShaderType, I8 : ShaderType, I9 : ShaderType, I10 : ShaderType, I11 : ShaderType>(
+  override val defaultValue: T,
+) : Invocable11<T, I1, I2, I3, I4, I5, I6, I7, I8, I9, I10, I11> {
+  override val name: String = defaultValue.name
+}
+
+@PublishedApi
+internal class Invocable12Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType, I4 : ShaderType, I5 : ShaderType, I6 : ShaderType, I7 : ShaderType, I8 : ShaderType, I9 : ShaderType, I10 : ShaderType, I11 : ShaderType, I12 : ShaderType>(
+  override val defaultValue: T,
+) : Invocable12<T, I1, I2, I3, I4, I5, I6, I7, I8, I9, I10, I11, I12> {
+  override val name: String = defaultValue.name
+}
+
+@PublishedApi
+internal class Invocable13Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType, I4 : ShaderType, I5 : ShaderType, I6 : ShaderType, I7 : ShaderType, I8 : ShaderType, I9 : ShaderType, I10 : ShaderType, I11 : ShaderType, I12 : ShaderType, I13 : ShaderType>(
+  override val defaultValue: T,
+) : Invocable13<T, I1, I2, I3, I4, I5, I6, I7, I8, I9, I10, I11, I12, I13> {
+  override val name: String = defaultValue.name
+}
+
+@PublishedApi
+internal class Invocable14Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType, I4 : ShaderType, I5 : ShaderType, I6 : ShaderType, I7 : ShaderType, I8 : ShaderType, I9 : ShaderType, I10 : ShaderType, I11 : ShaderType, I12 : ShaderType, I13 : ShaderType, I14 : ShaderType>(
+  override val defaultValue: T,
+) : Invocable14<T, I1, I2, I3, I4, I5, I6, I7, I8, I9, I10, I11, I12, I13, I14> {
+  override val name: String = defaultValue.name
+}
+
+@PublishedApi
+internal class Invocable15Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType, I4 : ShaderType, I5 : ShaderType, I6 : ShaderType, I7 : ShaderType, I8 : ShaderType, I9 : ShaderType, I10 : ShaderType, I11 : ShaderType, I12 : ShaderType, I13 : ShaderType, I14 : ShaderType, I15 : ShaderType>(
+  override val defaultValue: T,
+) : Invocable15<T, I1, I2, I3, I4, I5, I6, I7, I8, I9, I10, I11, I12, I13, I14, I15> {
+  override val name: String = defaultValue.name
+}
+
+@PublishedApi
+internal class Invocable16Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType, I4 : ShaderType, I5 : ShaderType, I6 : ShaderType, I7 : ShaderType, I8 : ShaderType, I9 : ShaderType, I10 : ShaderType, I11 : ShaderType, I12 : ShaderType, I13 : ShaderType, I14 : ShaderType, I15 : ShaderType, I16 : ShaderType>(
+  override val defaultValue: T,
+) : Invocable16<T, I1, I2, I3, I4, I5, I6, I7, I8, I9, I10, I11, I12, I13, I14, I15, I16> {
+  override val name: String = defaultValue.name
+}
+
+@PublishedApi
+internal class Invocable17Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType, I4 : ShaderType, I5 : ShaderType, I6 : ShaderType, I7 : ShaderType, I8 : ShaderType, I9 : ShaderType, I10 : ShaderType, I11 : ShaderType, I12 : ShaderType, I13 : ShaderType, I14 : ShaderType, I15 : ShaderType, I16 : ShaderType, I17 : ShaderType>(
+  override val defaultValue: T,
+) : Invocable17<T, I1, I2, I3, I4, I5, I6, I7, I8, I9, I10, I11, I12, I13, I14, I15, I16, I17> {
+  override val name: String = defaultValue.name
+}
+
+@PublishedApi
+internal class Invocable18Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType, I4 : ShaderType, I5 : ShaderType, I6 : ShaderType, I7 : ShaderType, I8 : ShaderType, I9 : ShaderType, I10 : ShaderType, I11 : ShaderType, I12 : ShaderType, I13 : ShaderType, I14 : ShaderType, I15 : ShaderType, I16 : ShaderType, I17 : ShaderType, I18 : ShaderType>(
+  override val defaultValue: T,
+) : Invocable18<T, I1, I2, I3, I4, I5, I6, I7, I8, I9, I10, I11, I12, I13, I14, I15, I16, I17, I18> {
+  override val name: String = defaultValue.name
+}
+
+@PublishedApi
+internal class Invocable19Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType, I4 : ShaderType, I5 : ShaderType, I6 : ShaderType, I7 : ShaderType, I8 : ShaderType, I9 : ShaderType, I10 : ShaderType, I11 : ShaderType, I12 : ShaderType, I13 : ShaderType, I14 : ShaderType, I15 : ShaderType, I16 : ShaderType, I17 : ShaderType, I18 : ShaderType, I19 : ShaderType>(
+  override val defaultValue: T,
+) : Invocable19<T, I1, I2, I3, I4, I5, I6, I7, I8, I9, I10, I11, I12, I13, I14, I15, I16, I17, I18, I19> {
+  override val name: String = defaultValue.name
+}
+
+@PublishedApi
+internal class Invocable20Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType, I4 : ShaderType, I5 : ShaderType, I6 : ShaderType, I7 : ShaderType, I8 : ShaderType, I9 : ShaderType, I10 : ShaderType, I11 : ShaderType, I12 : ShaderType, I13 : ShaderType, I14 : ShaderType, I15 : ShaderType, I16 : ShaderType, I17 : ShaderType, I18 : ShaderType, I19 : ShaderType, I20 : ShaderType>(
+  override val defaultValue: T,
+) : Invocable20<T, I1, I2, I3, I4, I5, I6, I7, I8, I9, I10, I11, I12, I13, I14, I15, I16, I17, I18, I19, I20> {
+  override val name: String = defaultValue.name
 }

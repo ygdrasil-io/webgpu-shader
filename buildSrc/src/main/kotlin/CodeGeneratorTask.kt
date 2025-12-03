@@ -1,8 +1,11 @@
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
+import com.squareup.kotlinpoet.TypeVariableName
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.tasks.Internal
@@ -43,12 +46,10 @@ open class CodeGeneratorTask : DefaultTask() {
 
         FileSpec.builder("experiment.redo", "GeneratedCode")
             .generateInvocablesInterface()
-
+            .generateInvocablesImplementation()
         .build().toString()
             .let { "/* This is a generated file. Do not edit! */\n\n$it" }
             .also { outputDir.resolve("function.generated.kt").writeText(it) }
 
     }
 }
-
-
