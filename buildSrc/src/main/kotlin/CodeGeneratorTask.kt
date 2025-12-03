@@ -43,22 +43,7 @@ open class CodeGeneratorTask : DefaultTask() {
 
         FileSpec.builder("experiment.redo", "GeneratedCode")
             .generateInvocablesInterface()
-        .addType(
-            TypeSpec.objectBuilder("GeneratedCode")
-                .addProperty(
-                    PropertySpec.builder("TIMESTAMP", String::class)
-                        .initializer("%S", System.currentTimeMillis().toString())
-                        .build()
-                )
-                .addFunction(
-                    FunSpec.builder("hello")
-                        .returns(String::class)
-                        .addStatement("return %S", "Hello from generated code!")
-                        .build()
-                )
-                .addKdoc("Code généré automatiquement avec KotlinPoet")
-                .build()
-        )
+
         .build().toString()
             .let { "/* This is a generated file. Do not edit! */\n\n$it" }
             .also { outputDir.resolve("function.generated.kt").writeText(it) }
