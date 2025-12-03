@@ -7,5 +7,5 @@ repositories {
 }
 
 dependencies {
-    implementation("com.squareup:kotlinpoet:1.18.1")
+    implementation(libs.kotlinpoet)
 }
