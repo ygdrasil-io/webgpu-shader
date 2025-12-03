@@ -7,11 +7,13 @@ inline fun ShaderFunctionBuilderScope.body(
         .block()
 }
 
-fun ShaderBodyBuilderScope.vec4f(input1: vec3f, input2: f32): ShaderType {
+context(context: ShaderBuilderScope)
+fun vec4f(input1: vec3f, input2: f32): ShaderType {
     return getDefaultValue<vec4f>()
 }
 
-fun ShaderBodyBuilderScope.vec4f(input1: f32, input2: f32): ShaderType {
+context(context: ShaderBuilderScope)
+fun vec4f(input1: f32, input2: f32): ShaderType {
     return getDefaultValue<vec4f>()
 }
 

@@ -1,5 +1,17 @@
-package experiment.redo
+@file:Suppress("UNUSED_VARIABLE", "unused")
 
+package experiment.redo.test
+
+import experiment.redo.body
+import experiment.redo.f32
+import experiment.redo.fn
+import experiment.redo.input
+import experiment.redo.returns
+import experiment.redo.shader
+import experiment.redo.uniform
+import experiment.redo.vec3f
+import experiment.redo.vec4f
+import experiment.redo.vertex
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -15,7 +27,6 @@ class ShaderTest {
         """.trimIndent()
 
         val actual = shader {
-            @Suppress("UNUSED_VARIABLE")
             val myUniform by uniform<f32>(binding = 0, group = 0)
         }.source
 
@@ -31,7 +42,6 @@ class ShaderTest {
         """.trimIndent()
 
         val actual = shader {
-            @Suppress("UNUSED_VARIABLE")
             val myFunction by fn<f32> {
 
             }
@@ -49,9 +59,7 @@ class ShaderTest {
         """.trimIndent()
 
         val actual = shader {
-            @Suppress("UNUSED_VARIABLE")
             val myFunction by fn<f32, f32> {
-                @Suppress("UNUSED_VARIABLE")
                 val x by input<f32>()
 
             }
@@ -71,9 +79,8 @@ class ShaderTest {
 
         val actual = shader {
             val myFunction by fn<f32> {
-                body {
-                    returns(f32(1.0))
-                }
+
+                returns(f32(1.0))
             }
         }.source
 
@@ -133,10 +140,9 @@ class ShaderTest {
         val actual = shader {
             val myFunction by fn<vec3f, vec3f> {
                 val pos by input<vec3f>()
-                body {
-                    // Note: on ne peut pas passer scale ici pour le moment
-                    returns(pos)
-                }
+
+                // Note: on ne peut pas passer scale ici pour le moment
+                returns(pos)
             }
         }.source
 
@@ -154,9 +160,8 @@ class ShaderTest {
 
         val actual = shader {
             val myFunction by fn<vec4f> {
-                body {
-                    returns(vec4f(f32(1.0), f32(2.0)))
-                }
+
+                returns(vec4f(f32(1.0), f32(2.0)))
             }
         }.source
 
@@ -197,9 +202,8 @@ class ShaderTest {
         val actual = shader {
             vertex {
                 val pos by input<vec4f>()
-                body {
-                    returns(pos)
-                }
+
+                returns(pos)
             }
         }.source
 
