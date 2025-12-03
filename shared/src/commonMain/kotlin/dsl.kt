@@ -19,9 +19,14 @@ data class ShaderSource(val source: String)
         when (statement) {
             is PropertyStatement,
             is VariableStatement,
-            is OperatorStatement,
             is ConstantStatement -> {
                 partialStatements.add(statement)
+            }
+
+            is OperatorStatement -> {
+                val right = pop()
+                val left = pop()
+                partialStatements.add(CompoundStatement(this, listOf(left, statement, right)))
             }
 
             else -> statements.add(statement)

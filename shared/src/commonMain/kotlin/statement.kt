@@ -19,3 +19,12 @@ internal class PropertyStatement(
         return ".$name"
     }
 }
+
+internal class CompoundStatement(
+    scope: ShaderBuilderScope,
+    val statements: List<BaseStatement>
+) : BaseStatement(scope) {
+    override fun toString(): String {
+        return statements.joinToString(" ")
+    }
+}

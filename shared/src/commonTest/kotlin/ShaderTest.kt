@@ -111,7 +111,7 @@ class ShaderTest {
     fun `test 6 - simple arithmetic operation`() {
         val expected = """
             fn myFunction(x: f32, y: f32) -> f32 {
-                return x + y;
+            ${tab}return x + y;
             }
             
         """.trimIndent()
@@ -132,17 +132,17 @@ class ShaderTest {
     fun `test 7 - vec3f multiply by f32`() {
         val expected = """
             fn myFunction(pos: vec3f, scale: f32) -> vec3f {
-                return pos * scale;
+            ${tab}return pos * scale;
             }
             
         """.trimIndent()
 
         val actual = shader {
-            val myFunction by fn<vec3f, vec3f> {
+            val myFunction by fn<vec3f, vec3f, f32> {
                 val pos by input<vec3f>()
+                val scale by input<f32>()
 
-                // Note: on ne peut pas passer scale ici pour le moment
-                returns(pos)
+                returns(pos * scale)
             }
         }.source
 
