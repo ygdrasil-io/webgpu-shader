@@ -13,7 +13,7 @@ fun vec4f(input1: f32, input2: f32, input3: f32, input4: f32): vec4f {
 }
 
 context(scope: ShaderFunctionBuilderScope)
-fun returns(type: ShaderType) {
+fun returning(type: ShaderType) {
     val subStatement = scope.pop()
     ReturnStatement(scope, type, subStatement)
         .addToScope()

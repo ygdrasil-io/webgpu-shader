@@ -5,7 +5,7 @@ package experiment.redo.test
 import experiment.redo.f32
 import experiment.redo.fn
 import experiment.redo.input
-import experiment.redo.returns
+import experiment.redo.returning
 import experiment.redo.shader
 import experiment.redo.uniform
 import experiment.redo.vec3f
@@ -79,7 +79,7 @@ class ShaderTest {
         val actual = shader {
             val myFunction by fn<f32> {
 
-                returns(f32(1.0))
+                returning(f32(1.0))
             }
         }.source
 
@@ -99,7 +99,7 @@ class ShaderTest {
             val myFunction by fn<f32, f32> {
                 val x by input<f32>()
 
-                returns(x)
+                returning(x)
             }
         }.source
 
@@ -120,7 +120,7 @@ class ShaderTest {
                 val x by input<f32>()
                 val y by input<f32>()
 
-                returns(x + y)
+                returning(x + y)
             }
         }.source
 
@@ -141,7 +141,7 @@ class ShaderTest {
                 val pos by input<vec3f>()
                 val scale by input<f32>()
 
-                returns(pos * scale)
+                returning(pos * scale)
             }
         }.source
 
@@ -160,7 +160,7 @@ class ShaderTest {
         val actual = shader {
             val myFunction by fn<vec4f> {
 
-                returns(vec4f(f32(1.0), f32(2.0), f32(3.0), f32(4.0)))
+                returning(vec4f(f32(1.0), f32(2.0), f32(3.0), f32(4.0)))
             }
         }.source
 
@@ -180,7 +180,7 @@ class ShaderTest {
             val myFunction by fn<vec3f, vec4f> {
                 val pos by input<vec4f>()
 
-                returns(pos.xyz)
+                returning(pos.xyz)
             }
         }.source
 
@@ -201,7 +201,7 @@ class ShaderTest {
             vertex {
                 val pos by input<vec4f>()
 
-                returns(pos)
+                returning(pos)
             }
         }.source
 
@@ -231,13 +231,13 @@ class ShaderTest {
             val test by fn<vec4f, vec3f> {
                 val pos by input<vec3f>()
 
-                returns(vec4f(pos * uniform, f32(1.0)))
+                returning(vec4f(pos * uniform, f32(1.0)))
             }
 
             vertex {
                 val pos by input<vec4f>()
 
-                returns(test(pos.xyz))
+                returning(test(pos.xyz))
             }
 
         }.source
