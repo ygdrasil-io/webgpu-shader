@@ -70,7 +70,7 @@ interface vec4f : vec4<f32> {
     context(scope: ShaderBuilderScope)
     val xyz: vec3f
         get() {
-            PropertyStatement(scope, "xyz")
+            propertyStatement("xyz")
             return getDefaultValue<vec3f>()
         }
 

@@ -171,7 +171,7 @@ class ShaderTest {
     fun `test 9 - property access xyz`() {
         val expected = """
             fn myFunction(pos: vec4f) -> vec3f {
-                return pos.xyz;
+            ${tab}return pos.xyz;
             }
             
         """.trimIndent()
