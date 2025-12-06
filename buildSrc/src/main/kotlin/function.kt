@@ -379,6 +379,13 @@ fun generateFunctionStatementClass(parameters: Int): TypeSpec {
                 )
                 .build()
         )
+        // Add force name function because vertex and fragment are not created the same way that other functions and need to change manually the name
+        .addFunction(
+            FunSpec.builder("forceName")
+                .addParameter("name", String::class)
+                .addCode("propertyName = name")
+                .build()
+        )
         .build()
 }
 

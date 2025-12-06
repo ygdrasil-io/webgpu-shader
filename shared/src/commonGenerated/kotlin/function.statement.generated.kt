@@ -35,6 +35,10 @@ internal class FunctionStatement0<T : ShaderType>(
       else -> inputs.add(input)
     }
   }
+
+  public fun forceName(name: String) {
+    propertyName = name
+  }
 }
 
 @PublishedApi
@@ -64,6 +68,10 @@ internal class FunctionStatement1<T : ShaderType, I1 : ShaderType>(
         error("""Parameter type mismatch ${input.defaultValue::class.simpleName}""")
       else -> inputs.add(input)
     }
+  }
+
+  public fun forceName(name: String) {
+    propertyName = name
   }
 }
 
@@ -95,6 +103,10 @@ internal class FunctionStatement2<T : ShaderType, I1 : ShaderType, I2 : ShaderTy
       else -> inputs.add(input)
     }
   }
+
+  public fun forceName(name: String) {
+    propertyName = name
+  }
 }
 
 @PublishedApi
@@ -124,6 +136,10 @@ internal class FunctionStatement3<T : ShaderType, I1 : ShaderType, I2 : ShaderTy
         error("""Parameter type mismatch ${input.defaultValue::class.simpleName}""")
       else -> inputs.add(input)
     }
+  }
+
+  public fun forceName(name: String) {
+    propertyName = name
   }
 }
 
@@ -155,6 +171,10 @@ internal class FunctionStatement4<T : ShaderType, I1 : ShaderType, I2 : ShaderTy
       else -> inputs.add(input)
     }
   }
+
+  public fun forceName(name: String) {
+    propertyName = name
+  }
 }
 
 @PublishedApi
@@ -184,6 +204,10 @@ internal class FunctionStatement5<T : ShaderType, I1 : ShaderType, I2 : ShaderTy
         error("""Parameter type mismatch ${input.defaultValue::class.simpleName}""")
       else -> inputs.add(input)
     }
+  }
+
+  public fun forceName(name: String) {
+    propertyName = name
   }
 }
 
@@ -215,6 +239,10 @@ internal class FunctionStatement6<T : ShaderType, I1 : ShaderType, I2 : ShaderTy
       else -> inputs.add(input)
     }
   }
+
+  public fun forceName(name: String) {
+    propertyName = name
+  }
 }
 
 @PublishedApi
@@ -244,6 +272,10 @@ internal class FunctionStatement7<T : ShaderType, I1 : ShaderType, I2 : ShaderTy
         error("""Parameter type mismatch ${input.defaultValue::class.simpleName}""")
       else -> inputs.add(input)
     }
+  }
+
+  public fun forceName(name: String) {
+    propertyName = name
   }
 }
 
@@ -275,6 +307,10 @@ internal class FunctionStatement8<T : ShaderType, I1 : ShaderType, I2 : ShaderTy
       else -> inputs.add(input)
     }
   }
+
+  public fun forceName(name: String) {
+    propertyName = name
+  }
 }
 
 @PublishedApi
@@ -305,6 +341,10 @@ internal class FunctionStatement9<T : ShaderType, I1 : ShaderType, I2 : ShaderTy
       else -> inputs.add(input)
     }
   }
+
+  public fun forceName(name: String) {
+    propertyName = name
+  }
 }
 
 @PublishedApi
@@ -334,5 +374,9 @@ internal class FunctionStatement10<T : ShaderType, I1 : ShaderType, I2 : ShaderT
         error("""Parameter type mismatch ${input.defaultValue::class.simpleName}""")
       else -> inputs.add(input)
     }
+  }
+
+  public fun forceName(name: String) {
+    propertyName = name
   }
 }
