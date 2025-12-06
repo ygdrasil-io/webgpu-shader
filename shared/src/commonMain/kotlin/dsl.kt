@@ -12,21 +12,15 @@ data class ShaderSource(val source: String)
  class ShaderBuilderScopeImpl : ShaderBuilderScope {
 
     val statements = mutableListOf<BaseStatement>()
-    val partialStatements = mutableListOf<BaseStatement>()
 
     override fun push(statement: BaseStatement) {
 
         when (statement) {
-            is PropertyStatement,
-            is VariableStatement,
-            is ConstantStatement -> {
-                partialStatements.add(statement)
-            }
 
             is OperatorStatement -> {
                 val right = pop()
                 val left = pop()
-                partialStatements.add(CompoundStatement(this, listOf(left, statement, right)))
+                statements.add(CompoundStatement(this, listOf(left, statement, right)))
             }
 
             else -> statements.add(statement)
@@ -35,7 +29,7 @@ data class ShaderSource(val source: String)
     }
 
      override fun pop(): BaseStatement {
-         partialStatements.removeLastOrNull()
+         statements.removeLastOrNull()
              ?.let { return it }
 
          error("No partial statement to pop")

@@ -1,8 +1,5 @@
 package experiment.redo
 
-
-
-
 @PublishedApi
 internal class ShaderFunctionBuilderScopeImpl(
     private val parent: ShaderBuilderScope,
