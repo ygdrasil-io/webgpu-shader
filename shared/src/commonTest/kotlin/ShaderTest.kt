@@ -238,7 +238,9 @@ class ShaderTest {
             vertex {
                 val pos by position<vec4f>()
 
-                returning(test(pos.xyz))
+                returning(
+                    test(pos.xyz)
+                )
             }
 
         }.source

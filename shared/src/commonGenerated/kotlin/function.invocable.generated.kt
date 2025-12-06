@@ -9,57 +9,64 @@ import kotlin.collections.List
 public interface Invocable0<T : ShaderType> : ShaderType {
   public val defaultValue: T
 
-  public operator fun invoke(): T = defaultValue
+  context(context: ShaderBuilderScope)
+  public operator fun invoke(): T
 }
 
 public interface Invocable1<T : ShaderType, I1 : ShaderType> : ShaderType {
   public val defaultValue: T
 
-  public operator fun invoke(i1: I1): T = defaultValue
+  context(context: ShaderBuilderScope)
+  public operator fun invoke(i1: I1): T
 }
 
 public interface Invocable2<T : ShaderType, I1 : ShaderType, I2 : ShaderType> : ShaderType {
   public val defaultValue: T
 
-  public operator fun invoke(i1: I1, i2: I2): T = defaultValue
+  context(context: ShaderBuilderScope)
+  public operator fun invoke(i1: I1, i2: I2): T
 }
 
 public interface Invocable3<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType> : ShaderType {
   public val defaultValue: T
 
+  context(context: ShaderBuilderScope)
   public operator fun invoke(
     i1: I1,
     i2: I2,
     i3: I3,
-  ): T = defaultValue
+  ): T
 }
 
 public interface Invocable4<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType, I4 : ShaderType> : ShaderType {
   public val defaultValue: T
 
+  context(context: ShaderBuilderScope)
   public operator fun invoke(
     i1: I1,
     i2: I2,
     i3: I3,
     i4: I4,
-  ): T = defaultValue
+  ): T
 }
 
 public interface Invocable5<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType, I4 : ShaderType, I5 : ShaderType> : ShaderType {
   public val defaultValue: T
 
+  context(context: ShaderBuilderScope)
   public operator fun invoke(
     i1: I1,
     i2: I2,
     i3: I3,
     i4: I4,
     i5: I5,
-  ): T = defaultValue
+  ): T
 }
 
 public interface Invocable6<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType, I4 : ShaderType, I5 : ShaderType, I6 : ShaderType> : ShaderType {
   public val defaultValue: T
 
+  context(context: ShaderBuilderScope)
   public operator fun invoke(
     i1: I1,
     i2: I2,
@@ -67,12 +74,13 @@ public interface Invocable6<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3
     i4: I4,
     i5: I5,
     i6: I6,
-  ): T = defaultValue
+  ): T
 }
 
 public interface Invocable7<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType, I4 : ShaderType, I5 : ShaderType, I6 : ShaderType, I7 : ShaderType> : ShaderType {
   public val defaultValue: T
 
+  context(context: ShaderBuilderScope)
   public operator fun invoke(
     i1: I1,
     i2: I2,
@@ -81,12 +89,13 @@ public interface Invocable7<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3
     i5: I5,
     i6: I6,
     i7: I7,
-  ): T = defaultValue
+  ): T
 }
 
 public interface Invocable8<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType, I4 : ShaderType, I5 : ShaderType, I6 : ShaderType, I7 : ShaderType, I8 : ShaderType> : ShaderType {
   public val defaultValue: T
 
+  context(context: ShaderBuilderScope)
   public operator fun invoke(
     i1: I1,
     i2: I2,
@@ -96,12 +105,13 @@ public interface Invocable8<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3
     i6: I6,
     i7: I7,
     i8: I8,
-  ): T = defaultValue
+  ): T
 }
 
 public interface Invocable9<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType, I4 : ShaderType, I5 : ShaderType, I6 : ShaderType, I7 : ShaderType, I8 : ShaderType, I9 : ShaderType> : ShaderType {
   public val defaultValue: T
 
+  context(context: ShaderBuilderScope)
   public operator fun invoke(
     i1: I1,
     i2: I2,
@@ -112,12 +122,13 @@ public interface Invocable9<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3
     i7: I7,
     i8: I8,
     i9: I9,
-  ): T = defaultValue
+  ): T
 }
 
 public interface Invocable10<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I3 : ShaderType, I4 : ShaderType, I5 : ShaderType, I6 : ShaderType, I7 : ShaderType, I8 : ShaderType, I9 : ShaderType, I10 : ShaderType> : ShaderType {
   public val defaultValue: T
 
+  context(context: ShaderBuilderScope)
   public operator fun invoke(
     i1: I1,
     i2: I2,
@@ -129,7 +140,7 @@ public interface Invocable10<T : ShaderType, I1 : ShaderType, I2 : ShaderType, I
     i8: I8,
     i9: I9,
     i10: I10,
-  ): T = defaultValue
+  ): T
 }
 
 @PublishedApi
@@ -142,7 +153,7 @@ internal class Invocable0Impl<T : ShaderType>(
   public var functionProperty: ReadOnlyPropertyBaseStatement<Invocable0<T>>? = null
 
   context(context: ShaderBuilderScope)
-  public operator fun invoke(): T {
+  override operator fun invoke(): T {
     val functionName = functionProperty?.propertyName ?: error("fail to get function name")
     invoqueStatement(functionName, parameters)
     return defaultValue
@@ -159,7 +170,7 @@ internal class Invocable1Impl<T : ShaderType, I1 : ShaderType>(
   public var functionProperty: ReadOnlyPropertyBaseStatement<Invocable1<T, I1>>? = null
 
   context(context: ShaderBuilderScope)
-  public operator fun invoke(I1: I1): T {
+  override operator fun invoke(i1: I1): T {
     val functionName = functionProperty?.propertyName ?: error("fail to get function name")
     invoqueStatement(functionName, parameters)
     return defaultValue
@@ -176,7 +187,7 @@ internal class Invocable2Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType>(
   public var functionProperty: ReadOnlyPropertyBaseStatement<Invocable2<T, I1, I2>>? = null
 
   context(context: ShaderBuilderScope)
-  public operator fun invoke(I1: I1, I2: I2): T {
+  override operator fun invoke(i1: I1, i2: I2): T {
     val functionName = functionProperty?.propertyName ?: error("fail to get function name")
     invoqueStatement(functionName, parameters)
     return defaultValue
@@ -193,10 +204,10 @@ internal class Invocable3Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, 
   public var functionProperty: ReadOnlyPropertyBaseStatement<Invocable3<T, I1, I2, I3>>? = null
 
   context(context: ShaderBuilderScope)
-  public operator fun invoke(
-    I1: I1,
-    I2: I2,
-    I3: I3,
+  override operator fun invoke(
+    i1: I1,
+    i2: I2,
+    i3: I3,
   ): T {
     val functionName = functionProperty?.propertyName ?: error("fail to get function name")
     invoqueStatement(functionName, parameters)
@@ -214,11 +225,11 @@ internal class Invocable4Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, 
   public var functionProperty: ReadOnlyPropertyBaseStatement<Invocable4<T, I1, I2, I3, I4>>? = null
 
   context(context: ShaderBuilderScope)
-  public operator fun invoke(
-    I1: I1,
-    I2: I2,
-    I3: I3,
-    I4: I4,
+  override operator fun invoke(
+    i1: I1,
+    i2: I2,
+    i3: I3,
+    i4: I4,
   ): T {
     val functionName = functionProperty?.propertyName ?: error("fail to get function name")
     invoqueStatement(functionName, parameters)
@@ -237,12 +248,12 @@ internal class Invocable5Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, 
       null
 
   context(context: ShaderBuilderScope)
-  public operator fun invoke(
-    I1: I1,
-    I2: I2,
-    I3: I3,
-    I4: I4,
-    I5: I5,
+  override operator fun invoke(
+    i1: I1,
+    i2: I2,
+    i3: I3,
+    i4: I4,
+    i5: I5,
   ): T {
     val functionName = functionProperty?.propertyName ?: error("fail to get function name")
     invoqueStatement(functionName, parameters)
@@ -261,13 +272,13 @@ internal class Invocable6Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, 
       = null
 
   context(context: ShaderBuilderScope)
-  public operator fun invoke(
-    I1: I1,
-    I2: I2,
-    I3: I3,
-    I4: I4,
-    I5: I5,
-    I6: I6,
+  override operator fun invoke(
+    i1: I1,
+    i2: I2,
+    i3: I3,
+    i4: I4,
+    i5: I5,
+    i6: I6,
   ): T {
     val functionName = functionProperty?.propertyName ?: error("fail to get function name")
     invoqueStatement(functionName, parameters)
@@ -286,14 +297,14 @@ internal class Invocable7Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, 
       ReadOnlyPropertyBaseStatement<Invocable7<T, I1, I2, I3, I4, I5, I6, I7>>? = null
 
   context(context: ShaderBuilderScope)
-  public operator fun invoke(
-    I1: I1,
-    I2: I2,
-    I3: I3,
-    I4: I4,
-    I5: I5,
-    I6: I6,
-    I7: I7,
+  override operator fun invoke(
+    i1: I1,
+    i2: I2,
+    i3: I3,
+    i4: I4,
+    i5: I5,
+    i6: I6,
+    i7: I7,
   ): T {
     val functionName = functionProperty?.propertyName ?: error("fail to get function name")
     invoqueStatement(functionName, parameters)
@@ -312,15 +323,15 @@ internal class Invocable8Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, 
       ReadOnlyPropertyBaseStatement<Invocable8<T, I1, I2, I3, I4, I5, I6, I7, I8>>? = null
 
   context(context: ShaderBuilderScope)
-  public operator fun invoke(
-    I1: I1,
-    I2: I2,
-    I3: I3,
-    I4: I4,
-    I5: I5,
-    I6: I6,
-    I7: I7,
-    I8: I8,
+  override operator fun invoke(
+    i1: I1,
+    i2: I2,
+    i3: I3,
+    i4: I4,
+    i5: I5,
+    i6: I6,
+    i7: I7,
+    i8: I8,
   ): T {
     val functionName = functionProperty?.propertyName ?: error("fail to get function name")
     invoqueStatement(functionName, parameters)
@@ -339,16 +350,16 @@ internal class Invocable9Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType, 
       ReadOnlyPropertyBaseStatement<Invocable9<T, I1, I2, I3, I4, I5, I6, I7, I8, I9>>? = null
 
   context(context: ShaderBuilderScope)
-  public operator fun invoke(
-    I1: I1,
-    I2: I2,
-    I3: I3,
-    I4: I4,
-    I5: I5,
-    I6: I6,
-    I7: I7,
-    I8: I8,
-    I9: I9,
+  override operator fun invoke(
+    i1: I1,
+    i2: I2,
+    i3: I3,
+    i4: I4,
+    i5: I5,
+    i6: I6,
+    i7: I7,
+    i8: I8,
+    i9: I9,
   ): T {
     val functionName = functionProperty?.propertyName ?: error("fail to get function name")
     invoqueStatement(functionName, parameters)
@@ -367,17 +378,17 @@ internal class Invocable10Impl<T : ShaderType, I1 : ShaderType, I2 : ShaderType,
       ReadOnlyPropertyBaseStatement<Invocable10<T, I1, I2, I3, I4, I5, I6, I7, I8, I9, I10>>? = null
 
   context(context: ShaderBuilderScope)
-  public operator fun invoke(
-    I1: I1,
-    I2: I2,
-    I3: I3,
-    I4: I4,
-    I5: I5,
-    I6: I6,
-    I7: I7,
-    I8: I8,
-    I9: I9,
-    I10: I10,
+  override operator fun invoke(
+    i1: I1,
+    i2: I2,
+    i3: I3,
+    i4: I4,
+    i5: I5,
+    i6: I6,
+    i7: I7,
+    i8: I8,
+    i9: I9,
+    i10: I10,
   ): T {
     val functionName = functionProperty?.propertyName ?: error("fail to get function name")
     invoqueStatement(functionName, parameters)

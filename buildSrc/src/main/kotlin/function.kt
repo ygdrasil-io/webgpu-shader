@@ -62,9 +62,10 @@ private fun generateInvocableInterface(parameters: Int): TypeSpec {
 
     // Construction de la fonction invoke(i1: I1, i2: I2...): T
     val invokeFunctionBuilder = FunSpec.builder("invoke")
+        .contextParameter("context", context.shaderBuilderScopeClass)
         .addModifiers(KModifier.OPERATOR)
+        .addModifiers(KModifier.ABSTRACT)
         .returns(returnTypeT)
-        .addStatement("return defaultValue")
 
     // Ajout des paramètres à la fonction invoke
     inputTypes.forEachIndexed { index, typeVar ->
@@ -148,8 +149,9 @@ private fun generateInvocableImplementation(parameters: Int): TypeSpec {
             FunSpec.builder("invoke")
                 .contextParameter("context", context.shaderBuilderScopeClass)
                 .addModifiers(KModifier.OPERATOR)
+                .addModifiers(KModifier.OVERRIDE)
                 .addParameters((1..parameters).map { i ->
-                    ParameterSpec("I$i", inputTypes[i - 1])
+                    ParameterSpec("i$i", inputTypes[i - 1])
                 })
                 .returns(returnTypeT)
                 .addCode(
@@ -390,6 +392,6 @@ fun generateFunctionStatementClass(parameters: Int): TypeSpec {
 }
 
 // Helper local pour contourner un problème de résolution si addNameParameter n'est pas dispo directement ou si la version de poet diffère
-private fun addNameParameter(name: String, type: com.squareup.kotlinpoet.TypeName, block: com.squareup.kotlinpoet.ParameterSpec.Builder.() -> Unit = {}): com.squareup.kotlinpoet.ParameterSpec {
-    return com.squareup.kotlinpoet.ParameterSpec.builder(name, type).apply(block).build()
+private fun addNameParameter(name: String, type: com.squareup.kotlinpoet.TypeName, block: ParameterSpec.Builder.() -> Unit = {}): com.squareup.kotlinpoet.ParameterSpec {
+    return ParameterSpec.builder(name, type).apply(block).build()
 }
