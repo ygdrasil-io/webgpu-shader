@@ -7,7 +7,7 @@ sealed class ReadOnlyPropertyBaseStatement<T>(
     val isFunction: Boolean = false
 ) : BaseStatement(scope) {
     var propertyName: String? = null
-        private set
+        internal set
 
     operator fun provideDelegate(thisRef: Any?, property: KProperty<*>): ReadOnlyPropertyBaseStatement<T> {
         init(property)

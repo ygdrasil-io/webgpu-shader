@@ -5,6 +5,7 @@ package experiment.redo.test
 import experiment.redo.f32
 import experiment.redo.fn
 import experiment.redo.input
+import experiment.redo.position
 import experiment.redo.returning
 import experiment.redo.shader
 import experiment.redo.uniform
@@ -198,8 +199,8 @@ class ShaderTest {
         """.trimIndent()
 
         val actual = shader {
-            vertex {
-                val pos by input<vec4f>()
+            vertex("myVertex") {
+                val pos by position<vec4f>()
 
                 returning(pos)
             }
@@ -235,7 +236,7 @@ class ShaderTest {
             }
 
             vertex {
-                val pos by input<vec4f>()
+                val pos by position<vec4f>()
 
                 returning(test(pos.xyz))
             }

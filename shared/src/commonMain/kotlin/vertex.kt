@@ -1,6 +1,7 @@
 package experiment.redo
 
 inline fun ShaderBuilderScope.vertex(
+    name: String = "mainVertex",
     block: ShaderFunctionBuilderScope.() -> Unit
 ) {
     val defaultValue = getDefaultValue<vec4f>()
@@ -12,6 +13,7 @@ inline fun ShaderBuilderScope.vertex(
         listOf("vertex"),
         listOf("builtin(position)")
     )
+    statement.forceName(name)
 
     statement.addToScope()
 
