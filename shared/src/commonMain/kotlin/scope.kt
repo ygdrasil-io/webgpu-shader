@@ -5,4 +5,3 @@ sealed interface ShaderBuilderScope {
     fun pop(): BaseStatement
 }
 sealed interface ShaderFunctionBuilderScope : ShaderBuilderScope
-sealed interface ShaderBodyBuilderScope : ShaderBuilderScope

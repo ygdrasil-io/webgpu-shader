@@ -1,12 +1,5 @@
 package experiment.redo
 
-inline fun ShaderFunctionBuilderScope.body(
-    block: ShaderBodyBuilderScope.() -> Unit
-) {
-    ShaderBodyBuilderScopeImpl(this)
-        .block()
-}
-
 context(context: ShaderBuilderScope)
 fun vec4f(input1: vec3f, input2: f32): ShaderType {
     return getDefaultValue<vec4f>()
@@ -32,18 +25,5 @@ internal class ReturnStatement(
 
     override fun toString(): String {
         return "\treturn $subStatement;\n"
-    }
-}
-
-@PublishedApi
-internal class ShaderBodyBuilderScopeImpl(
-    val parent : ShaderBuilderScope,
-): ShaderBodyBuilderScope {
-    override fun push(statement: BaseStatement) {
-        parent.push(statement)
-    }
-
-    override fun pop(): BaseStatement {
-        return parent.pop()
     }
 }

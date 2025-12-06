@@ -2,7 +2,6 @@
 
 package experiment.redo.test
 
-import experiment.redo.body
 import experiment.redo.f32
 import experiment.redo.fn
 import experiment.redo.input
@@ -153,7 +152,7 @@ class ShaderTest {
     fun `test 8 - vec4f constructor call`() {
         val expected = """
             fn myFunction() -> vec4f {
-                return vec4f(1.0, 2.0, 3.0, 4.0);
+            ${tab}return vec4f(1.0, 2.0, 3.0, 4.0);
             }
             
         """.trimIndent()
@@ -180,9 +179,8 @@ class ShaderTest {
         val actual = shader {
             val myFunction by fn<vec3f, vec4f> {
                 val pos by input<vec4f>()
-                body {
-                    returns(pos.xyz)
-                }
+
+                returns(pos.xyz)
             }
         }.source
 
@@ -234,17 +232,14 @@ class ShaderTest {
 
             val test by fn<vec4f, vec3f> {
                 val pos by input<vec3f>()
-                body {
-                    returns(vec4f(pos * uniform, f32(1.0)))
-                }
+
+                returns(vec4f(pos * uniform, f32(1.0)))
             }
 
             vertex {
                 val pos by input<vec4f>()
 
-                body {
-                    returns(test(pos.xyz))
-                }
+                returns(test(pos.xyz))
             }
 
         }.source
