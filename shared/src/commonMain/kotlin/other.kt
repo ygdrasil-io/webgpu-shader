@@ -17,7 +17,7 @@ sealed class ReadOnlyPropertyBaseStatement<T>(
     operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
         if (!isFunction) {
             VariableStatement(scope, propertyName!!)
-                .also { scope.push(it) }
+                .addToScope()
         }
         return defaultValue
     }

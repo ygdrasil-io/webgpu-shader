@@ -18,5 +18,5 @@ inline fun <reified T : ShaderType> input() : ReadOnlyPropertyBaseStatement<T> {
     return FunctionInput(
         scope,
         defaultValue
-    ).also { scope.push(it) }
+    ).addToScope()
 }

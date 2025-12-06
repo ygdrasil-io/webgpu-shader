@@ -160,7 +160,7 @@ class ShaderTest {
         val actual = shader {
             val myFunction by fn<vec4f> {
 
-                returns(vec4f(f32(1.0), f32(2.0)))
+                returns(vec4f(f32(1.0), f32(2.0), f32(3.0), f32(4.0)))
             }
         }.source
 

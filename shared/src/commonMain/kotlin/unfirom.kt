@@ -24,5 +24,5 @@ inline fun <reified T : ShaderType> uniform(
         group,
         scope,
         defaultValue
-    ).also { scope.push(it) }
+    ).addToScope()
 }

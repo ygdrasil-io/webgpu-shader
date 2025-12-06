@@ -188,14 +188,14 @@ private fun generateFnExtensionFunction(parameters: Int): FunSpec {
                 add("%T<%L>(defaultValue),\n", invocableImplClass, allTypeVariables.joinToString(", ") { it.name })
                 add("$argsList\n")
                 unindent()
-                addStatement(").also { scope.push(it) }")
+                addStatement(").addToScope()")
                 add("\n")
 
                 // 4. Exécution du block et fermeture
                 addStatement("%T(scope, statement).block()", implScopeClass)
                 add("\n")
                 addStatement("// Add end block statement to stack")
-                addStatement("%T(scope).also { scope.push(it) }", endBlockClass)
+                addStatement("%T(scope).addToScope()", endBlockClass)
                 addStatement("return statement")
             }.build()
         )
