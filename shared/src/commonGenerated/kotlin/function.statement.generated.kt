@@ -65,10 +65,6 @@ internal class FunctionStatement1<T : ShaderType, I1 : ShaderType>(
       else -> inputs.add(input)
     }
   }
-
-    fun forceName(name: String) {
-        propertyName = name
-    }
 }
 
 @PublishedApi

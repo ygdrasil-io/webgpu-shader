@@ -8,6 +8,7 @@ import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.LambdaTypeName
+import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
@@ -99,6 +100,9 @@ private fun generateInvocableImplementation(parameters: Int): TypeSpec {
     // Paramétrage de l'interface (ex: Invocable1<T, I1>)
     val superInterface = interfaceClassName.parameterizedBy(typeVariables)
 
+    // List<ShaderType>
+    val listShaderType = List::class.asClassName().parameterizedBy(shaderTypeClass)
+
     return TypeSpec.classBuilder("Invocable${parameters}Impl")
         .addModifiers(KModifier.INTERNAL)
         .addAnnotation(PublishedApi::class)
@@ -107,6 +111,7 @@ private fun generateInvocableImplementation(parameters: Int): TypeSpec {
         .primaryConstructor(
             FunSpec.constructorBuilder()
                 .addParameter("defaultValue", returnTypeT)
+                .addParameter("parameters", listShaderType)
                 .build()
         )
         .addProperty(
@@ -116,9 +121,44 @@ private fun generateInvocableImplementation(parameters: Int): TypeSpec {
                 .build()
         )
         .addProperty(
+            PropertySpec.builder("parameters", listShaderType)
+                .addModifiers(KModifier.PRIVATE)
+                .initializer("parameters")
+                .build()
+        )
+        .addProperty(
             PropertySpec.builder("name", String::class)
                 .addModifiers(KModifier.OVERRIDE)
                 .initializer("defaultValue.name")
+                .build()
+        )
+        .addProperty(
+            PropertySpec
+                .builder(
+                    "functionProperty",
+                    context.readOnlyPropertyBaseStatementClass
+                        .parameterizedBy(superInterface)
+                        .copy(nullable = true)
+                )
+                .mutable(true)
+                .initializer("null")
+                .build()
+        )
+        .addFunction(
+            FunSpec.builder("invoke")
+                .contextParameter("context", context.shaderBuilderScopeClass)
+                .addModifiers(KModifier.OPERATOR)
+                .addParameters((1..parameters).map { i ->
+                    ParameterSpec("I$i", inputTypes[i - 1])
+                })
+                .returns(returnTypeT)
+                .addCode(
+                    CodeBlock.builder()
+                        .addStatement("val functionName = functionProperty?.propertyName ?: error(\"fail to get function name\")")
+                        .addStatement("invoqueStatement(functionName, parameters)")
+                        .addStatement("return defaultValue")
+                    .build()
+                )
                 .build()
         )
         .build()
@@ -130,7 +170,7 @@ private fun generateFnExtensionFunction(parameters: Int): FunSpec {
     val shaderTypeClass = context.shaderTypeClass
 
     // Définition des classes utilisées dans le corps de la fonction
-    val shaderBuilderScopeClass = ClassName(basePackage, "ShaderBuilderScope")
+    val shaderBuilderScopeClass = context.shaderBuilderScopeClass
     val shaderFunctionBuilderScopeClass = ClassName(basePackage, "ShaderFunctionBuilderScope")
     val readOnlyPropertyClass = ClassName(basePackage, "ReadOnlyPropertyBaseStatement")
     val functionStatementClass = ClassName(basePackage, "FunctionStatement$parameters")
@@ -176,6 +216,15 @@ private fun generateFnExtensionFunction(parameters: Int): FunSpec {
                     addStatement("val i${i + 1} = getDefaultValue<%T>()", type)
                 }
                 add("\n")
+                if (parameters == 0) {
+                    addStatement("val invocable = ${invocableImplClass.simpleName}<T>(defaultValue, emptyList())")
+                } else {
+                    addStatement("val invocable = ${invocableImplClass.simpleName}<T, ${
+                        (1..parameters).joinToString(", ") { "I$it" }
+                    }>(defaultValue, listOf(${
+                        (1..parameters).joinToString(", ") { "i$it" }
+                    }))")
+                }
 
                 // 2. Création de la liste d'arguments
                 val argsList = if (parameters == 0) "emptyList()" else "listOf(" + (1..parameters).joinToString(", ") { "i$it" } + ")"
@@ -184,8 +233,8 @@ private fun generateFnExtensionFunction(parameters: Int): FunSpec {
                 add("val statement = %T(\n", functionStatementClass)
                 indent()
                 add("scope,\n")
-                // InvocableNImpl<T, I1...>(defaultValue)
-                add("%T<%L>(defaultValue),\n", invocableImplClass, allTypeVariables.joinToString(", ") { it.name })
+                indent()
+                add("invocable,\n")
                 add("$argsList\n")
                 unindent()
                 addStatement(").addToScope()")
@@ -196,6 +245,7 @@ private fun generateFnExtensionFunction(parameters: Int): FunSpec {
                 add("\n")
                 addStatement("// Add end block statement to stack")
                 addStatement("%T(scope).addToScope()", endBlockClass)
+                .addStatement("invocable.functionProperty = statement")
                 addStatement("return statement")
             }.build()
         )

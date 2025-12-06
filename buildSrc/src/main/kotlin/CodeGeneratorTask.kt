@@ -17,7 +17,11 @@ open class CodeGeneratorTask : DefaultTask() {
     @Internal
     val basePackageName = "experiment.redo"
     @Internal
-    val shaderTypeClass = ClassName("experiment.redo", "ShaderType")
+    val shaderTypeClass = ClassName(basePackageName, "ShaderType")
+    @Internal
+    val readOnlyPropertyBaseStatementClass = ClassName(basePackageName, "ReadOnlyPropertyBaseStatement")
+    @Internal
+    val shaderBuilderScopeClass = ClassName(basePackageName, "ShaderBuilderScope")
 
     init {
         group = "generator"

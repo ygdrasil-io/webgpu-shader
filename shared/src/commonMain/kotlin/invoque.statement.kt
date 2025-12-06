@@ -1,7 +1,7 @@
 package experiment.redo
 
 context(scope: ShaderBuilderScope)
-internal fun requestInvoqueStatement(
+internal fun invoqueStatement(
     functionName: String,
     parameters: List<ShaderType>
 ) {
