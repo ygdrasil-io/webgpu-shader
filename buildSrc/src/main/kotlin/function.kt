@@ -244,6 +244,12 @@ fun generateFunctionStatementClass(parameters: Int): TypeSpec {
                         List::class.asClassName().parameterizedBy(String::class.asClassName())
                     ) { defaultValue("emptyList()") }
                 )
+                .addParameter(
+                    addNameParameter(
+                        "returnAnnotations",
+                        List::class.asClassName().parameterizedBy(String::class.asClassName())
+                    ) { defaultValue("emptyList()") }
+                )
                 .build()
         )
         // Appel au constructeur parent (scope, defaultValue, isFunction = true)
@@ -254,12 +260,20 @@ fun generateFunctionStatementClass(parameters: Int): TypeSpec {
         // Propriétés du constructeur
         .addProperty(
             PropertySpec.builder("expectedInputs", listShaderType)
+                .addModifiers(KModifier.PRIVATE)
                 .initializer("expectedInputs")
                 .build()
         )
         .addProperty(
             PropertySpec.builder("annotations", List::class.asClassName().parameterizedBy(String::class.asClassName()))
+                .addModifiers(KModifier.PRIVATE)
                 .initializer("annotations")
+                .build()
+        )
+        .addProperty(
+            PropertySpec.builder("returnAnnotations", List::class.asClassName().parameterizedBy(String::class.asClassName()))
+                .addModifiers(KModifier.PRIVATE)
+                .initializer("returnAnnotations")
                 .build()
         )
 
@@ -282,8 +296,8 @@ fun generateFunctionStatementClass(parameters: Int): TypeSpec {
                         .beginControlFlow("annotations.forEach { annotation ->")
                         .addStatement("append(\"@\$annotation\\n\")")
                         .endControlFlow()
-                        .addStatement("val parameters = inputs.joinToString(\", \") { it.toString() }.orEmpty()")
-                        .addStatement("append(\"fn \$propertyName(\$parameters) -> \${defaultValue.name} {\\n\")")
+                        .addStatement("val parameters = inputs.joinToString(\", \") { it.toString() }")
+                        .addStatement("append(\"fn \$propertyName(\$parameters) -> \${returnAnnotations.joinToString { \"@\$it \" }}\${defaultValue.name} {\\n\")")
                         .endControlFlow()
                         .build()
                 )

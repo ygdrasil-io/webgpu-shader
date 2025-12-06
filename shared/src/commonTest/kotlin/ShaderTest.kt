@@ -192,7 +192,7 @@ class ShaderTest {
         val expected = """
             @vertex
             fn myVertex(@builtin(position) pos: vec4f) -> @builtin(position) vec4f {
-                return pos;
+            ${tab}return pos;
             }
             
         """.trimIndent()
@@ -212,14 +212,12 @@ class ShaderTest {
     fun `test 11 - full shader example`() {
         val expected = """
             @group(0) @binding(0) var<uniform> uniform: f32;
-            
             fn test(pos: vec3f) -> vec4f {
-                return vec4f(pos * uniform, 1.0);
+            ${tab}return vec4f(pos * uniform, 1.0);
             }
-            
             @vertex
             fn mainVertex(@builtin(position) pos: vec4f) -> @builtin(position) vec4f {
-                return test(pos.xyz);
+            ${tab}return test(pos.xyz);
             }
             
         """.trimIndent()

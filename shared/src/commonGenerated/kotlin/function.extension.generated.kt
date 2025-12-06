@@ -14,12 +14,12 @@ public inline fun <reified T : ShaderType> fn(block: ShaderFunctionBuilderScope.
     scope,
     Invocable0Impl<T>(defaultValue),
     emptyList()
-  ).also { scope.push(it) }
+  ).addToScope()
 
   ShaderFunctionBuilderScopeImpl(scope, statement).block()
 
   // Add end block statement to stack
-  EndBlockStatement(scope).also { scope.push(it) }
+  EndBlockStatement(scope).addToScope()
   return statement
 }
 
@@ -33,12 +33,12 @@ public inline fun <reified T : ShaderType, reified I1 : ShaderType> fn(block: Sh
     scope,
     Invocable1Impl<T, I1>(defaultValue),
     listOf(i1)
-  ).also { scope.push(it) }
+  ).addToScope()
 
   ShaderFunctionBuilderScopeImpl(scope, statement).block()
 
   // Add end block statement to stack
-  EndBlockStatement(scope).also { scope.push(it) }
+  EndBlockStatement(scope).addToScope()
   return statement
 }
 
@@ -53,12 +53,12 @@ public inline fun <reified T : ShaderType, reified I1 : ShaderType, reified I2 :
     scope,
     Invocable2Impl<T, I1, I2>(defaultValue),
     listOf(i1, i2)
-  ).also { scope.push(it) }
+  ).addToScope()
 
   ShaderFunctionBuilderScopeImpl(scope, statement).block()
 
   // Add end block statement to stack
-  EndBlockStatement(scope).also { scope.push(it) }
+  EndBlockStatement(scope).addToScope()
   return statement
 }
 
@@ -74,12 +74,12 @@ public inline fun <reified T : ShaderType, reified I1 : ShaderType, reified I2 :
     scope,
     Invocable3Impl<T, I1, I2, I3>(defaultValue),
     listOf(i1, i2, i3)
-  ).also { scope.push(it) }
+  ).addToScope()
 
   ShaderFunctionBuilderScopeImpl(scope, statement).block()
 
   // Add end block statement to stack
-  EndBlockStatement(scope).also { scope.push(it) }
+  EndBlockStatement(scope).addToScope()
   return statement
 }
 
@@ -96,12 +96,12 @@ public inline fun <reified T : ShaderType, reified I1 : ShaderType, reified I2 :
     scope,
     Invocable4Impl<T, I1, I2, I3, I4>(defaultValue),
     listOf(i1, i2, i3, i4)
-  ).also { scope.push(it) }
+  ).addToScope()
 
   ShaderFunctionBuilderScopeImpl(scope, statement).block()
 
   // Add end block statement to stack
-  EndBlockStatement(scope).also { scope.push(it) }
+  EndBlockStatement(scope).addToScope()
   return statement
 }
 
@@ -119,12 +119,12 @@ public inline fun <reified T : ShaderType, reified I1 : ShaderType, reified I2 :
     scope,
     Invocable5Impl<T, I1, I2, I3, I4, I5>(defaultValue),
     listOf(i1, i2, i3, i4, i5)
-  ).also { scope.push(it) }
+  ).addToScope()
 
   ShaderFunctionBuilderScopeImpl(scope, statement).block()
 
   // Add end block statement to stack
-  EndBlockStatement(scope).also { scope.push(it) }
+  EndBlockStatement(scope).addToScope()
   return statement
 }
 
@@ -143,12 +143,12 @@ public inline fun <reified T : ShaderType, reified I1 : ShaderType, reified I2 :
     scope,
     Invocable6Impl<T, I1, I2, I3, I4, I5, I6>(defaultValue),
     listOf(i1, i2, i3, i4, i5, i6)
-  ).also { scope.push(it) }
+  ).addToScope()
 
   ShaderFunctionBuilderScopeImpl(scope, statement).block()
 
   // Add end block statement to stack
-  EndBlockStatement(scope).also { scope.push(it) }
+  EndBlockStatement(scope).addToScope()
   return statement
 }
 
@@ -168,12 +168,12 @@ public inline fun <reified T : ShaderType, reified I1 : ShaderType, reified I2 :
     scope,
     Invocable7Impl<T, I1, I2, I3, I4, I5, I6, I7>(defaultValue),
     listOf(i1, i2, i3, i4, i5, i6, i7)
-  ).also { scope.push(it) }
+  ).addToScope()
 
   ShaderFunctionBuilderScopeImpl(scope, statement).block()
 
   // Add end block statement to stack
-  EndBlockStatement(scope).also { scope.push(it) }
+  EndBlockStatement(scope).addToScope()
   return statement
 }
 
@@ -194,12 +194,12 @@ public inline fun <reified T : ShaderType, reified I1 : ShaderType, reified I2 :
     scope,
     Invocable8Impl<T, I1, I2, I3, I4, I5, I6, I7, I8>(defaultValue),
     listOf(i1, i2, i3, i4, i5, i6, i7, i8)
-  ).also { scope.push(it) }
+  ).addToScope()
 
   ShaderFunctionBuilderScopeImpl(scope, statement).block()
 
   // Add end block statement to stack
-  EndBlockStatement(scope).also { scope.push(it) }
+  EndBlockStatement(scope).addToScope()
   return statement
 }
 
@@ -221,12 +221,12 @@ public inline fun <reified T : ShaderType, reified I1 : ShaderType, reified I2 :
     scope,
     Invocable9Impl<T, I1, I2, I3, I4, I5, I6, I7, I8, I9>(defaultValue),
     listOf(i1, i2, i3, i4, i5, i6, i7, i8, i9)
-  ).also { scope.push(it) }
+  ).addToScope()
 
   ShaderFunctionBuilderScopeImpl(scope, statement).block()
 
   // Add end block statement to stack
-  EndBlockStatement(scope).also { scope.push(it) }
+  EndBlockStatement(scope).addToScope()
   return statement
 }
 
@@ -249,11 +249,11 @@ public inline fun <reified T : ShaderType, reified I1 : ShaderType, reified I2 :
     scope,
     Invocable10Impl<T, I1, I2, I3, I4, I5, I6, I7, I8, I9, I10>(defaultValue),
     listOf(i1, i2, i3, i4, i5, i6, i7, i8, i9, i10)
-  ).also { scope.push(it) }
+  ).addToScope()
 
   ShaderFunctionBuilderScopeImpl(scope, statement).block()
 
   // Add end block statement to stack
-  EndBlockStatement(scope).also { scope.push(it) }
+  EndBlockStatement(scope).addToScope()
   return statement
 }
