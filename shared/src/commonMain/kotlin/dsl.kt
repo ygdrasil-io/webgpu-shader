@@ -14,18 +14,7 @@ internal class ShaderBuilderScopeImpl : ShaderBuilderScope {
     val statements = mutableListOf<BaseStatement>()
 
     override fun push(statement: BaseStatement) {
-
-        when (statement) {
-
-            is OperatorStatement -> {
-                val right = pop()
-                val left = pop()
-                statements.add(CompoundStatement(this, listOf(left, statement, right)))
-            }
-
-            else -> statements.add(statement)
-        }
-
+        statements.add(statement)
     }
 
      override fun pop(): BaseStatement {

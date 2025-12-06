@@ -15,8 +15,7 @@ interface f32 : ShaderType {
 
     context(scope: ShaderBuilderScope)
     operator fun plus(other: f32): ShaderType {
-        OperatorStatement(scope, Operator.PLUS)
-            .addToScope()
+        operatorStatement(Operator.PLUS)
         return getDefaultValue<f32>()
     }
 }
@@ -51,8 +50,7 @@ interface vec3f : vec3<f32> {
 
     context(scope: ShaderBuilderScope)
     operator fun times(value: f32): vec3f {
-        OperatorStatement(scope, Operator.TIMES)
-            .addToScope()
+        operatorStatement(Operator.TIMES)
         return getDefaultValue<vec3f>()
     }
 

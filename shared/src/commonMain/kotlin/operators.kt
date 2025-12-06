@@ -4,7 +4,15 @@ enum class Operator(val symbol: String) {
     PLUS("+"), MINUS("-"), TIMES("*"), DIVIDE("/")
 }
 
-internal class OperatorStatement(
+context(scope: ShaderBuilderScope)
+internal fun operatorStatement(operator: Operator) {
+    val right = scope.pop()
+    val left = scope.pop()
+    CompoundStatement(scope, listOf(left, OperatorStatement(scope, operator), right))
+        .addToScope()
+}
+
+private class OperatorStatement(
     scope: ShaderBuilderScope,
     val operator: Operator
 ) : BaseStatement(scope) {
