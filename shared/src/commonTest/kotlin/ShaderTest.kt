@@ -7,6 +7,7 @@ import experiment.redo.ShaderFunctionBuilderScope
 import experiment.redo.f32
 import experiment.redo.fn
 import experiment.redo.input
+import experiment.redo.local
 import experiment.redo.position
 import experiment.redo.returning
 import experiment.redo.shader
@@ -257,15 +258,15 @@ class ShaderTest {
         val expected = """
             fn calculate(x: f32, y: f32) -> f32 {
             ${tab}let a = x + y;
-            ${tab}let b = a * 2.0;
-            ${tab}let c = b - x;
-            ${tab}return c / y;
+            ${tab}return a;
             }
 
         """.trimIndent()
 
         fun ShaderFunctionBuilderScope.addOperations(x: f32, y: f32): f32 {
-            return x + y
+            var a by local<f32>()
+            a = x + y
+            return a
         }
 
         val actual = shader {
