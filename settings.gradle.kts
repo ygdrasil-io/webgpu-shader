@@ -1,4 +1,4 @@
-rootProject.name = "test_library"
+rootProject.name = "GPUShader-root"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
@@ -28,6 +28,4 @@ dependencyResolutionManagement {
     }
 }
 
-//include(":composeApp")
-//include(":server")
-include(":shared")
+include(":GPUShader")
