@@ -1,4 +1,4 @@
-package experiment.redo
+package io.ygdrasil.shader
 
 enum class Operator(val symbol: String) {
     PLUS("+"), MINUS("-"), TIMES("*"), DIVIDE("/")

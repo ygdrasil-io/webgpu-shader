@@ -51,7 +51,9 @@ It use WGSL (WebGPU Shading Language) as reference language for is syntax and ex
 - **Functions**: camelCase for DSL builders (e.g., `shader`, `vertex`)
 
 ### Package Structure
-- All code in `experiment.redo` package
+- All code in `io.ygdrasil.shader` package
+- base package are and should not be represented as directory structure, sources are grouped in `src/commonMain/kotlin/`
+- only sub-packages are represented as directories
 - Related functionality grouped in single files
 - Separate files for major concepts (function, block, statement, etc.)
 

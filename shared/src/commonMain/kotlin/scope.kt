@@ -1,4 +1,4 @@
-package experiment.redo
+package io.ygdrasil.shader
 
 sealed interface ShaderBuilderScope {
     fun push(statement: BaseStatement)

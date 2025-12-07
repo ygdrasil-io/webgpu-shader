@@ -1,4 +1,4 @@
-package experiment.redo
+package io.ygdrasil.shader
 
 @PublishedApi
 internal class UniformStatement<T: ShaderType>(

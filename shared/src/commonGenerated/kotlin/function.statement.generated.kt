@@ -1,6 +1,6 @@
 /* This is a generated file. Do not edit! */
 
-package experiment.redo
+package io.ygdrasil.shader
 
 import kotlin.PublishedApi
 import kotlin.String

@@ -1,4 +1,4 @@
-package experiment.redo
+package io.ygdrasil.shader
 
 context(scope: ShaderBuilderScope)
 fun f32(value: Double): f32 {

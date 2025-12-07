@@ -1,4 +1,4 @@
-package experiment.redo
+package io.ygdrasil.shader
 
 context(context: ShaderBuilderScope)
 fun vec4f(input1: vec3f, input2: f32): vec4f {

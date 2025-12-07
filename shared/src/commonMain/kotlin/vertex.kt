@@ -1,4 +1,4 @@
-package experiment.redo
+package io.ygdrasil.shader
 
 inline fun ShaderBuilderScope.vertex(
     name: String = "mainVertex",

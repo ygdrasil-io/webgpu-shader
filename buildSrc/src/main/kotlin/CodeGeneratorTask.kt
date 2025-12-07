@@ -15,7 +15,7 @@ open class CodeGeneratorTask : DefaultTask() {
     @Internal
     val maxParametersPerFunction = 10
     @Internal
-    val basePackageName = "experiment.redo"
+    val basePackageName = "io.ygdrasil.shader"
     @Internal
     val shaderTypeClass = ClassName(basePackageName, "ShaderType")
     @Internal

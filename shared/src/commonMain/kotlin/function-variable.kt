@@ -1,4 +1,4 @@
-package experiment.redo
+package io.ygdrasil.shader
 
 import kotlin.reflect.KProperty
 

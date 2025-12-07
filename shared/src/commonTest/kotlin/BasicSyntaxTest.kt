@@ -1,19 +1,19 @@
 @file:Suppress("UNUSED_VARIABLE", "unused")
 
-package experiment.redo.test
+package io.ygdrasil.shader.test
 
-import experiment.redo.ShaderFunctionBuilderScope
-import experiment.redo.f32
-import experiment.redo.fn
-import experiment.redo.input
-import experiment.redo.local
-import experiment.redo.position
-import experiment.redo.returning
-import experiment.redo.shader
-import experiment.redo.uniform
-import experiment.redo.vec3f
-import experiment.redo.vec4f
-import experiment.redo.vertex
+import io.ygdrasil.shader.ShaderFunctionBuilderScope
+import io.ygdrasil.shader.f32
+import io.ygdrasil.shader.fn
+import io.ygdrasil.shader.input
+import io.ygdrasil.shader.local
+import io.ygdrasil.shader.position
+import io.ygdrasil.shader.returning
+import io.ygdrasil.shader.shader
+import io.ygdrasil.shader.uniform
+import io.ygdrasil.shader.vec3f
+import io.ygdrasil.shader.vec4f
+import io.ygdrasil.shader.vertex
 import org.intellij.lang.annotations.Language
 import kotlin.test.Test
 import kotlin.test.assertEquals

@@ -1,4 +1,4 @@
-package experiment.redo
+package io.ygdrasil.shader
 
 abstract class BaseStatement(open val scope: ShaderBuilderScope)
 

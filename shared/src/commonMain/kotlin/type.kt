@@ -1,4 +1,4 @@
-package experiment.redo
+package io.ygdrasil.shader
 
 sealed interface ShaderType {
     val name: String
