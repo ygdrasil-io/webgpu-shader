@@ -224,8 +224,9 @@ class BasicSyntaxTest {
         @Language("WGSL")
         val expected = """
             fn createVector() -> vec4f {
-                var x: f32 = f32(10);
-                var y: f32 = f32(15);
+                let x: f32 = 10.0;
+                var y: f32;
+                y = 15.0;
                 return vec4f(x, y, 0.0, 1.0);
             }
             
@@ -234,8 +235,9 @@ class BasicSyntaxTest {
 
         val actual = shader {
             val createVector by fn<vec4f> {
-                var x by local<f32>()
+                val x by local<f32>(f32(10.0))
                 var y by local<f32>()
+                y = f32(15.0)
                 returning(vec4f(x, y, f32(0.0), f32(1.0)))
             }
         }.source

@@ -16,7 +16,7 @@ sealed class ReadOnlyPropertyBaseStatement<T>(
 
     operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
         if (!isFunction) {
-            VariableStatement(scope, propertyName!!)
+            VariableAccessStatement(scope, propertyName!!)
                 .addToScope()
         }
         return defaultValue
@@ -44,7 +44,7 @@ sealed class PropertyBaseStatement<T>(
 
      operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
          if (!isFunction) {
-             VariableStatement(scope, propertyName!!)
+             VariableAccessStatement(scope, propertyName!!)
                  .addToScope()
          }
          return defaultValue
@@ -56,8 +56,9 @@ sealed class PropertyBaseStatement<T>(
          propertyName = property.name
      }
 
-     operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
-
+     open operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
+         VariableAssignStatement(scope, propertyName!!, scope.pop())
+             .addToScope()
      }
 }
 
