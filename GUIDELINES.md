@@ -1,6 +1,6 @@
-# WebGPU Shader DSL - Development Guidelines
+# Shader DSL - Development Guidelines
 
-This development guide is intended for developers and AI agents working on the WebGPU Shader DSL project. It provides
+This development guide is intended for developers and AI agents working on the Shader DSL project. It provides
 comprehensive guidelines, standards, and best practices for contributing to and maintaining the codebase.
 
 ## Project Structure
@@ -19,7 +19,8 @@ shared/
 ```
 
 ## Project Overview
-This is a Kotlin Multiplatform DSL for generating WGSL (WebGPU Shading Language) code through a type-safe builder pattern.
+This is a Kotlin Multiplatform DSL for generating Shader code through a type-safe builder pattern.
+It use WGSL (WebGPU Shading Language) as reference language but could be extended to support other languages.
 
 ## Code Architecture
 
