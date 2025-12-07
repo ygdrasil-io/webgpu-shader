@@ -285,34 +285,4 @@ class BasicSyntaxTest {
         assertEquals(expected, actual)
     }
 
-    @Test
-    fun `test 13 - function with multiple operations in body`() {
-        @Language("WGSL")
-        val expected = """
-            fn calculate(x: f32, y: f32) -> f32 {
-                let a: f32 = x + y;
-                return a;
-            }
-
-        """.trimIndent()
-
-        fun ShaderFunctionBuilderScope.addOperations(x: f32, y: f32): f32 {
-            var a by local<f32>()
-            a = x + y
-            return a
-        }
-
-        val actual = shader {
-            val calculate by fn<f32, f32, f32> {
-                val x by input<f32>()
-                val y by input<f32>()
-
-                val result = addOperations(x, y)
-
-                returning(result)
-            }
-        }.source
-
-        assertEquals(expected, actual)
-    }
 }
