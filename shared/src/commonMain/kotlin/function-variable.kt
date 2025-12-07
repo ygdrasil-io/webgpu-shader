@@ -1,7 +1,7 @@
 package experiment.redo
 
 @PublishedApi
-internal class VariableInput<T: ShaderType>(
+internal class VariableStatement<T: ShaderType>(
     scope: ShaderBuilderScope,
     defaultValue: T
 ): PropertyBaseStatement<T>(scope, defaultValue) {
@@ -14,8 +14,8 @@ internal class VariableInput<T: ShaderType>(
 context(scope: ShaderFunctionBuilderScope)
 inline fun <reified T : ShaderType> local(value: T? = null) : PropertyBaseStatement<T> {
     val defaultValue = getDefaultValue<T>()
-    CompoundStatement()
-    return VariableInput(
+
+    return VariableStatement(
         scope,
         defaultValue
     ).addToScope()

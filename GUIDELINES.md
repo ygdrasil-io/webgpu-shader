@@ -1,13 +1,18 @@
 # WebGPU Shader DSL - Development Guidelines
 
+This development guide is intended for developers and AI agents working on the WebGPU Shader DSL project. It provides
+comprehensive guidelines, standards, and best practices for contributing to and maintaining the codebase.
+
 ## Project Structure
 ```
 shared/
 ├── src/
+│   ├── commonGenerated/         # Generated code from gradle task
+│   │   └── kotlin/              
 │   ├── commonMain/
 │   │   └── kotlin/              # Core implementation
 │   └── commonTest/
-│       └── kotlin/              # Shared tests
+│       └── kotlin/              # tests
 ├── build.gradle.kts
 ├── settings.gradle.kts
 └── ... (build config files)
@@ -59,7 +64,7 @@ This is a Kotlin Multiplatform DSL for generating WGSL (WebGPU Shading Language)
 2. **Lambda receivers**: Scope-based builders
    ```kotlin
    shader { /* ShaderBuilderScope */ }
-   body { /* function body scope */ }
+   fn { /* function scope */ }
    ```
 
 3. **Type parameters**: Generic types for WGSL types
@@ -131,17 +136,9 @@ internal class NewStatement(
 
 ### Adding New DSL Builders
 ```kotlin
-fun ShaderBuilderScope.newBuilder(params): ReturnType {
+context(scope: ShaderBuilderScope)
+fun newBuilder(params): ReturnType {
     return NewStatement(this, params)
-}
-```
-
-### Handling Partial Statements
-Add new partial statement types to the `when` clause in `ShaderBuilderScopeImpl.push()`:
-```kotlin
-when (statement) {
-    is NewPartialStatement -> partialStatements.add(statement)
-    // ...
 }
 ```
 
