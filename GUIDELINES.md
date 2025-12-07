@@ -20,7 +20,7 @@ shared/
 
 ## Project Overview
 This is a Kotlin Multiplatform DSL for generating Shader code through a type-safe builder pattern.
-It use WGSL (WebGPU Shading Language) as reference language but could be extended to support other languages.
+It use WGSL (WebGPU Shading Language) as reference language for is syntax and export to WGSL but could be extended to support other languages on code generation.
 
 ## Code Architecture
 

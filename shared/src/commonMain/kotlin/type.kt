@@ -136,7 +136,7 @@ interface mat4x4h : mat4x4<f16>
 
 // Types de tableau
 interface array<T : ShaderType> : ShaderType
-interface array_sized<T : ShaderType, N : Int> : ShaderType
+interface array_sized<T : ShaderType, Int> : ShaderType
 
 // Types atomiques
 interface iatomic<T> : ShaderType where T : ShaderType, T : i32
