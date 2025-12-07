@@ -20,8 +20,6 @@ import kotlin.test.assertEquals
 
 class BasicSyntaxTest {
 
-    val tab = "\t"
-
     @Test
     fun `test 1 - simple uniform declaration`() {
         @Language("WGSL")
@@ -79,14 +77,13 @@ class BasicSyntaxTest {
         @Language("WGSL")
         val expected = """
             fn myFunction() -> f32 {
-            ${tab}return 1.0;
+                return 1.0;
             }
             
         """.trimIndent()
 
         val actual = shader {
             val myFunction by fn<f32> {
-
                 returning(f32(1.0))
             }
         }.source
@@ -99,7 +96,7 @@ class BasicSyntaxTest {
         @Language("WGSL")
         val expected = """
             fn myFunction(x: f32) -> f32 {
-            ${tab}return x;
+                return x;
             }
             
         """.trimIndent()
@@ -120,7 +117,7 @@ class BasicSyntaxTest {
         @Language("WGSL")
         val expected = """
             fn myFunction(x: f32, y: f32) -> f32 {
-            ${tab}return x + y;
+                return x + y;
             }
             
         """.trimIndent()
@@ -142,7 +139,7 @@ class BasicSyntaxTest {
         @Language("WGSL")
         val expected = """
             fn myFunction(pos: vec3f, scale: f32) -> vec3f {
-            ${tab}return pos * scale;
+                return pos * scale;
             }
             
         """.trimIndent()
@@ -164,7 +161,7 @@ class BasicSyntaxTest {
         @Language("WGSL")
         val expected = """
             fn myFunction() -> vec4f {
-            ${tab}return vec4f(1.0, 2.0, 3.0, 4.0);
+                return vec4f(1.0, 2.0, 3.0, 4.0);
             }
             
         """.trimIndent()
@@ -184,7 +181,7 @@ class BasicSyntaxTest {
         @Language("WGSL")
         val expected = """
             fn myFunction(pos: vec4f) -> vec3f {
-            ${tab}return pos.xyz;
+                return pos.xyz;
             }
             
         """.trimIndent()
@@ -206,7 +203,7 @@ class BasicSyntaxTest {
         val expected = """
             @vertex
             fn myVertex(@builtin(position) pos: vec4f) -> @builtin(position) vec4f {
-            ${tab}return pos;
+                return pos;
             }
             
         """.trimIndent()
@@ -226,18 +223,17 @@ class BasicSyntaxTest {
     fun `test 11 - local variable`() {
         @Language("WGSL")
         val expected = """
-            @vertex
             fn createVector() -> vec4f {
-            ${tab}return var x = f32(10);
-            ${tab}return var y = f32(15);
-            return vec4f(x, y, 0.0, 1.0);
+                var x: f32 = f32(10);
+                var y: f32 = f32(15);
+                return vec4f(x, y, 0.0, 1.0);
             }
             
         """.trimIndent()
 
 
         val actual = shader {
-            val createVector = fn<vec4f> {
+            val createVector by fn<vec4f> {
                 var x by local<f32>()
                 var y by local<f32>()
                 returning(vec4f(x, y, f32(0.0), f32(1.0)))
@@ -253,11 +249,11 @@ class BasicSyntaxTest {
         val expected = """
             @group(0) @binding(0) var<uniform> myUniform: f32;
             fn test(pos: vec3f) -> vec4f {
-            ${tab}return vec4f(pos * myUniform, 1.0);
+                return vec4f(pos * myUniform, 1.0);
             }
             @vertex
             fn mainVertex(@builtin(position) pos: vec4f) -> @builtin(position) vec4f {
-            ${tab}return test(pos.xyz);
+                return test(pos.xyz);
             }
             
         """.trimIndent()
@@ -292,8 +288,8 @@ class BasicSyntaxTest {
         @Language("WGSL")
         val expected = """
             fn calculate(x: f32, y: f32) -> f32 {
-            ${tab}let a = x + y;
-            ${tab}return a;
+                let a: f32 = x + y;
+                return a;
             }
 
         """.trimIndent()

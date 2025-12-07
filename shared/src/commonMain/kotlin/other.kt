@@ -45,6 +45,7 @@ sealed class PropertyBaseStatement<T>(
      operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
          if (!isFunction) {
              VariableStatement(scope, propertyName!!)
+                 .addToScope()
          }
          return defaultValue
      }

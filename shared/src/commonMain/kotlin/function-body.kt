@@ -13,9 +13,9 @@ fun vec4f(input1: f32, input2: f32, input3: f32, input4: f32): vec4f {
 }
 
 context(scope: ShaderFunctionBuilderScope)
-fun returning(type: ShaderType) {
+fun returning(value: ShaderType) {
     val subStatement = scope.pop()
-    ReturnStatement(scope, type, subStatement)
+    ReturnStatement(scope, value, subStatement)
         .addToScope()
 }
 
@@ -26,6 +26,6 @@ internal class ReturnStatement(
 ) : BaseStatement(scope) {
 
     override fun toString(): String {
-        return "\treturn $subStatement;\n"
+        return "return $subStatement"
     }
 }

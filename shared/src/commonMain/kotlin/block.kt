@@ -5,6 +5,8 @@ internal class EndBlockStatement(
     scope: ShaderBuilderScope,
 ) : BaseStatement(scope) {
     override fun toString(): String {
-        return "}\n"
+        return "}"
     }
 }
+
+internal interface StartBlockStatement

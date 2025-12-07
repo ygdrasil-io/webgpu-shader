@@ -1,5 +1,6 @@
 package experiment.redo
 
+import kotlin.jvm.JvmInline
 
 fun shader(block: ShaderBuilderScope.() -> Unit): ShaderSource {
     return ShaderBuilderScopeImpl()
@@ -7,7 +8,8 @@ fun shader(block: ShaderBuilderScope.() -> Unit): ShaderSource {
         .build()
 }
 
-data class ShaderSource(val source: String)
+@JvmInline
+value class ShaderSource(val source: String)
 
 internal class ShaderBuilderScopeImpl : ShaderBuilderScope {
 
@@ -17,17 +19,39 @@ internal class ShaderBuilderScopeImpl : ShaderBuilderScope {
         statements.add(statement)
     }
 
-     override fun pop(): BaseStatement {
-         statements.removeLastOrNull()
-             ?.let { return it }
+    override fun pop(): BaseStatement {
+        statements.removeLastOrNull()
+            ?.let { return it }
 
-         error("No partial statement to pop")
-     }
+        error("No partial statement to pop")
+    }
 
-     fun build(): ShaderSource {
+    /**
+     * Builds and returns a complete shader source code representation as a string.
+     * The method processes a list of shader statements, maintaining proper indentation levels
+     * and formatting the source code with semicolons and line breaks where appropriate.
+     *
+     * Note: This API is experimental and may change in future releases
+     * @return A `ShaderSource` instance containing the formatted shader source code as a string.
+     */
+    internal fun build(): ShaderSource {
+        var indent = 0
         val source = StringBuilder()
         statements.forEach {
-            source.append(it.toString())
+            // fn, if ...
+            if (it is EndBlockStatement) indent--
+            source.append("    ".repeat(indent))
+            // Actual statement
+            source.append("$it")
+            // End of statement
+            when (it) {
+                is StartBlockStatement -> indent++
+                // Do not append semicolon for end block statements
+                is EndBlockStatement -> {}
+                else -> source.append(";")
+            }
+            // New line
+            source.append("\n")
         }
         return ShaderSource(
             source.toString()

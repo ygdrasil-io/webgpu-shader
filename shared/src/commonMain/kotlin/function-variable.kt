@@ -7,16 +7,16 @@ internal class VariableInput<T: ShaderType>(
 ): PropertyBaseStatement<T>(scope, defaultValue) {
 
     override fun toString(): String {
-        return "$propertyName: ${defaultValue.name};\n"
+        return "var $propertyName: ${defaultValue.name}"
     }
 }
 
 context(scope: ShaderFunctionBuilderScope)
-inline fun <reified T : ShaderType> local() : PropertyBaseStatement<T> {
+inline fun <reified T : ShaderType> local(value: T? = null) : PropertyBaseStatement<T> {
     val defaultValue = getDefaultValue<T>()
-
+    CompoundStatement()
     return VariableInput(
         scope,
         defaultValue
-    )
+    ).addToScope()
 }

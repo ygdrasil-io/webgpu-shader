@@ -15,7 +15,8 @@ internal class FunctionStatement0<T : ShaderType>(
   private val annotations: List<String> = emptyList(),
   private val returnAnnotations: List<String> = emptyList(),
 ) : ReadOnlyPropertyBaseStatement<Invocable0<T>>(scope, defaultValue, isFunction = true),
-    FunctionWithParameters {
+    FunctionWithParameters,
+    StartBlockStatement {
   private val inputs: MutableList<FunctionInput<out ShaderType>> = mutableListOf()
 
   override fun toString(): String = buildString {
@@ -23,7 +24,7 @@ internal class FunctionStatement0<T : ShaderType>(
       append("@$annotation\n")
     }
     val parameters = inputs.joinToString(", ") { it.toString() }
-    append("fn $propertyName($parameters) -> ${returnAnnotations.joinToString { "@$it " }}${defaultValue.name} {\n")
+    append("fn $propertyName($parameters) -> ${returnAnnotations.joinToString { "@$it " }}${defaultValue.name} {")
   }
 
   override fun addInput(input: FunctionInput<out ShaderType>) {
@@ -49,7 +50,8 @@ internal class FunctionStatement1<T : ShaderType, I1 : ShaderType>(
   private val annotations: List<String> = emptyList(),
   private val returnAnnotations: List<String> = emptyList(),
 ) : ReadOnlyPropertyBaseStatement<Invocable1<T, I1>>(scope, defaultValue, isFunction = true),
-    FunctionWithParameters {
+    FunctionWithParameters,
+    StartBlockStatement {
   private val inputs: MutableList<FunctionInput<out ShaderType>> = mutableListOf()
 
   override fun toString(): String = buildString {
@@ -57,7 +59,7 @@ internal class FunctionStatement1<T : ShaderType, I1 : ShaderType>(
       append("@$annotation\n")
     }
     val parameters = inputs.joinToString(", ") { it.toString() }
-    append("fn $propertyName($parameters) -> ${returnAnnotations.joinToString { "@$it " }}${defaultValue.name} {\n")
+    append("fn $propertyName($parameters) -> ${returnAnnotations.joinToString { "@$it " }}${defaultValue.name} {")
   }
 
   override fun addInput(input: FunctionInput<out ShaderType>) {
@@ -83,7 +85,8 @@ internal class FunctionStatement2<T : ShaderType, I1 : ShaderType, I2 : ShaderTy
   private val annotations: List<String> = emptyList(),
   private val returnAnnotations: List<String> = emptyList(),
 ) : ReadOnlyPropertyBaseStatement<Invocable2<T, I1, I2>>(scope, defaultValue, isFunction = true),
-    FunctionWithParameters {
+    FunctionWithParameters,
+    StartBlockStatement {
   private val inputs: MutableList<FunctionInput<out ShaderType>> = mutableListOf()
 
   override fun toString(): String = buildString {
@@ -91,7 +94,7 @@ internal class FunctionStatement2<T : ShaderType, I1 : ShaderType, I2 : ShaderTy
       append("@$annotation\n")
     }
     val parameters = inputs.joinToString(", ") { it.toString() }
-    append("fn $propertyName($parameters) -> ${returnAnnotations.joinToString { "@$it " }}${defaultValue.name} {\n")
+    append("fn $propertyName($parameters) -> ${returnAnnotations.joinToString { "@$it " }}${defaultValue.name} {")
   }
 
   override fun addInput(input: FunctionInput<out ShaderType>) {
@@ -117,7 +120,8 @@ internal class FunctionStatement3<T : ShaderType, I1 : ShaderType, I2 : ShaderTy
   private val annotations: List<String> = emptyList(),
   private val returnAnnotations: List<String> = emptyList(),
 ) : ReadOnlyPropertyBaseStatement<Invocable3<T, I1, I2, I3>>(scope, defaultValue, isFunction = true),
-    FunctionWithParameters {
+    FunctionWithParameters,
+    StartBlockStatement {
   private val inputs: MutableList<FunctionInput<out ShaderType>> = mutableListOf()
 
   override fun toString(): String = buildString {
@@ -125,7 +129,7 @@ internal class FunctionStatement3<T : ShaderType, I1 : ShaderType, I2 : ShaderTy
       append("@$annotation\n")
     }
     val parameters = inputs.joinToString(", ") { it.toString() }
-    append("fn $propertyName($parameters) -> ${returnAnnotations.joinToString { "@$it " }}${defaultValue.name} {\n")
+    append("fn $propertyName($parameters) -> ${returnAnnotations.joinToString { "@$it " }}${defaultValue.name} {")
   }
 
   override fun addInput(input: FunctionInput<out ShaderType>) {
@@ -151,7 +155,8 @@ internal class FunctionStatement4<T : ShaderType, I1 : ShaderType, I2 : ShaderTy
   private val annotations: List<String> = emptyList(),
   private val returnAnnotations: List<String> = emptyList(),
 ) : ReadOnlyPropertyBaseStatement<Invocable4<T, I1, I2, I3, I4>>(scope, defaultValue, isFunction = true),
-    FunctionWithParameters {
+    FunctionWithParameters,
+    StartBlockStatement {
   private val inputs: MutableList<FunctionInput<out ShaderType>> = mutableListOf()
 
   override fun toString(): String = buildString {
@@ -159,7 +164,7 @@ internal class FunctionStatement4<T : ShaderType, I1 : ShaderType, I2 : ShaderTy
       append("@$annotation\n")
     }
     val parameters = inputs.joinToString(", ") { it.toString() }
-    append("fn $propertyName($parameters) -> ${returnAnnotations.joinToString { "@$it " }}${defaultValue.name} {\n")
+    append("fn $propertyName($parameters) -> ${returnAnnotations.joinToString { "@$it " }}${defaultValue.name} {")
   }
 
   override fun addInput(input: FunctionInput<out ShaderType>) {
@@ -185,7 +190,8 @@ internal class FunctionStatement5<T : ShaderType, I1 : ShaderType, I2 : ShaderTy
   private val annotations: List<String> = emptyList(),
   private val returnAnnotations: List<String> = emptyList(),
 ) : ReadOnlyPropertyBaseStatement<Invocable5<T, I1, I2, I3, I4, I5>>(scope, defaultValue, isFunction = true),
-    FunctionWithParameters {
+    FunctionWithParameters,
+    StartBlockStatement {
   private val inputs: MutableList<FunctionInput<out ShaderType>> = mutableListOf()
 
   override fun toString(): String = buildString {
@@ -193,7 +199,7 @@ internal class FunctionStatement5<T : ShaderType, I1 : ShaderType, I2 : ShaderTy
       append("@$annotation\n")
     }
     val parameters = inputs.joinToString(", ") { it.toString() }
-    append("fn $propertyName($parameters) -> ${returnAnnotations.joinToString { "@$it " }}${defaultValue.name} {\n")
+    append("fn $propertyName($parameters) -> ${returnAnnotations.joinToString { "@$it " }}${defaultValue.name} {")
   }
 
   override fun addInput(input: FunctionInput<out ShaderType>) {
@@ -219,7 +225,8 @@ internal class FunctionStatement6<T : ShaderType, I1 : ShaderType, I2 : ShaderTy
   private val annotations: List<String> = emptyList(),
   private val returnAnnotations: List<String> = emptyList(),
 ) : ReadOnlyPropertyBaseStatement<Invocable6<T, I1, I2, I3, I4, I5, I6>>(scope, defaultValue, isFunction = true),
-    FunctionWithParameters {
+    FunctionWithParameters,
+    StartBlockStatement {
   private val inputs: MutableList<FunctionInput<out ShaderType>> = mutableListOf()
 
   override fun toString(): String = buildString {
@@ -227,7 +234,7 @@ internal class FunctionStatement6<T : ShaderType, I1 : ShaderType, I2 : ShaderTy
       append("@$annotation\n")
     }
     val parameters = inputs.joinToString(", ") { it.toString() }
-    append("fn $propertyName($parameters) -> ${returnAnnotations.joinToString { "@$it " }}${defaultValue.name} {\n")
+    append("fn $propertyName($parameters) -> ${returnAnnotations.joinToString { "@$it " }}${defaultValue.name} {")
   }
 
   override fun addInput(input: FunctionInput<out ShaderType>) {
@@ -253,7 +260,8 @@ internal class FunctionStatement7<T : ShaderType, I1 : ShaderType, I2 : ShaderTy
   private val annotations: List<String> = emptyList(),
   private val returnAnnotations: List<String> = emptyList(),
 ) : ReadOnlyPropertyBaseStatement<Invocable7<T, I1, I2, I3, I4, I5, I6, I7>>(scope, defaultValue, isFunction = true),
-    FunctionWithParameters {
+    FunctionWithParameters,
+    StartBlockStatement {
   private val inputs: MutableList<FunctionInput<out ShaderType>> = mutableListOf()
 
   override fun toString(): String = buildString {
@@ -261,7 +269,7 @@ internal class FunctionStatement7<T : ShaderType, I1 : ShaderType, I2 : ShaderTy
       append("@$annotation\n")
     }
     val parameters = inputs.joinToString(", ") { it.toString() }
-    append("fn $propertyName($parameters) -> ${returnAnnotations.joinToString { "@$it " }}${defaultValue.name} {\n")
+    append("fn $propertyName($parameters) -> ${returnAnnotations.joinToString { "@$it " }}${defaultValue.name} {")
   }
 
   override fun addInput(input: FunctionInput<out ShaderType>) {
@@ -287,7 +295,8 @@ internal class FunctionStatement8<T : ShaderType, I1 : ShaderType, I2 : ShaderTy
   private val annotations: List<String> = emptyList(),
   private val returnAnnotations: List<String> = emptyList(),
 ) : ReadOnlyPropertyBaseStatement<Invocable8<T, I1, I2, I3, I4, I5, I6, I7, I8>>(scope, defaultValue, isFunction = true),
-    FunctionWithParameters {
+    FunctionWithParameters,
+    StartBlockStatement {
   private val inputs: MutableList<FunctionInput<out ShaderType>> = mutableListOf()
 
   override fun toString(): String = buildString {
@@ -295,7 +304,7 @@ internal class FunctionStatement8<T : ShaderType, I1 : ShaderType, I2 : ShaderTy
       append("@$annotation\n")
     }
     val parameters = inputs.joinToString(", ") { it.toString() }
-    append("fn $propertyName($parameters) -> ${returnAnnotations.joinToString { "@$it " }}${defaultValue.name} {\n")
+    append("fn $propertyName($parameters) -> ${returnAnnotations.joinToString { "@$it " }}${defaultValue.name} {")
   }
 
   override fun addInput(input: FunctionInput<out ShaderType>) {
@@ -321,7 +330,8 @@ internal class FunctionStatement9<T : ShaderType, I1 : ShaderType, I2 : ShaderTy
   private val annotations: List<String> = emptyList(),
   private val returnAnnotations: List<String> = emptyList(),
 ) : ReadOnlyPropertyBaseStatement<Invocable9<T, I1, I2, I3, I4, I5, I6, I7, I8, I9>>(scope, defaultValue, isFunction = true),
-    FunctionWithParameters {
+    FunctionWithParameters,
+    StartBlockStatement {
   private val inputs: MutableList<FunctionInput<out ShaderType>> = mutableListOf()
 
   override fun toString(): String = buildString {
@@ -329,7 +339,7 @@ internal class FunctionStatement9<T : ShaderType, I1 : ShaderType, I2 : ShaderTy
       append("@$annotation\n")
     }
     val parameters = inputs.joinToString(", ") { it.toString() }
-    append("fn $propertyName($parameters) -> ${returnAnnotations.joinToString { "@$it " }}${defaultValue.name} {\n")
+    append("fn $propertyName($parameters) -> ${returnAnnotations.joinToString { "@$it " }}${defaultValue.name} {")
   }
 
   override fun addInput(input: FunctionInput<out ShaderType>) {
@@ -355,7 +365,8 @@ internal class FunctionStatement10<T : ShaderType, I1 : ShaderType, I2 : ShaderT
   private val annotations: List<String> = emptyList(),
   private val returnAnnotations: List<String> = emptyList(),
 ) : ReadOnlyPropertyBaseStatement<Invocable10<T, I1, I2, I3, I4, I5, I6, I7, I8, I9, I10>>(scope, defaultValue, isFunction = true),
-    FunctionWithParameters {
+    FunctionWithParameters,
+    StartBlockStatement {
   private val inputs: MutableList<FunctionInput<out ShaderType>> = mutableListOf()
 
   override fun toString(): String = buildString {
@@ -363,7 +374,7 @@ internal class FunctionStatement10<T : ShaderType, I1 : ShaderType, I2 : ShaderT
       append("@$annotation\n")
     }
     val parameters = inputs.joinToString(", ") { it.toString() }
-    append("fn $propertyName($parameters) -> ${returnAnnotations.joinToString { "@$it " }}${defaultValue.name} {\n")
+    append("fn $propertyName($parameters) -> ${returnAnnotations.joinToString { "@$it " }}${defaultValue.name} {")
   }
 
   override fun addInput(input: FunctionInput<out ShaderType>) {

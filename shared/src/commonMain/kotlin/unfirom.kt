@@ -9,7 +9,7 @@ internal class UniformStatement<T: ShaderType>(
 ): ReadOnlyPropertyBaseStatement<T>(scope, defaultValue) {
 
     override fun toString(): String {
-        return "@group($group) @binding($binding) var<uniform> $propertyName: ${defaultValue.name};\n"
+        return "@group($group) @binding($binding) var<uniform> $propertyName: ${defaultValue.name}"
     }
 }
 

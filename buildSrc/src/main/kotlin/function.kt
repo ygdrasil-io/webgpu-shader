@@ -265,6 +265,7 @@ fun generateFunctionStatementClass(parameters: Int): TypeSpec {
     val functionWithParametersClass = ClassName(basePackage, "FunctionWithParameters")
     val readOnlyPropertyClass = ClassName(basePackage, "ReadOnlyPropertyBaseStatement")
     val invocableInterfaceClass = ClassName(basePackage, "Invocable$parameters")
+    val startBlockStatementClass = ClassName(basePackage, "StartBlockStatement")
 
     // Génériques T, I1...
     val typeT = TypeVariableName("T", shaderTypeClass)
@@ -283,6 +284,7 @@ fun generateFunctionStatementClass(parameters: Int): TypeSpec {
         .addTypeVariables(allTypeVariables)
         .superclass(readOnlyPropertyClass.parameterizedBy(invocableType))
         .addSuperinterface(functionWithParametersClass)
+        .addSuperinterface(startBlockStatementClass)
 
         // Constructeur primaire
         .primaryConstructor(
@@ -349,7 +351,7 @@ fun generateFunctionStatementClass(parameters: Int): TypeSpec {
                         .addStatement("append(\"@\$annotation\\n\")")
                         .endControlFlow()
                         .addStatement("val parameters = inputs.joinToString(\", \") { it.toString() }")
-                        .addStatement("append(\"fn \$propertyName(\$parameters) -> \${returnAnnotations.joinToString { \"@\$it \" }}\${defaultValue.name} {\\n\")")
+                        .addStatement("append(\"fn \$propertyName(\$parameters) -> \${returnAnnotations.joinToString { \"@\$it \" }}\${defaultValue.name} {\")")
                         .endControlFlow()
                         .build()
                 )
