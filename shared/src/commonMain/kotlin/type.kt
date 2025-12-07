@@ -14,8 +14,26 @@ interface f32 : ShaderType {
         get() = "f32"
 
     context(scope: ShaderBuilderScope)
-    operator fun plus(other: f32): ShaderType {
+    operator fun plus(other: f32): f32 {
         operatorStatement(Operator.PLUS)
+        return getDefaultValue<f32>()
+    }
+
+    context(scope: ShaderBuilderScope)
+    operator fun times(other: f32): f32 {
+        operatorStatement(Operator.TIMES)
+        return getDefaultValue<f32>()
+    }
+
+    context(scope: ShaderBuilderScope)
+    operator fun minus(other: f32): f32 {
+        operatorStatement(Operator.MINUS)
+        return getDefaultValue<f32>()
+    }
+
+    context(scope: ShaderBuilderScope)
+    operator fun div(other: f32): f32 {
+        operatorStatement(Operator.DIVIDE)
         return getDefaultValue<f32>()
     }
 }

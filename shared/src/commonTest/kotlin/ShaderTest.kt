@@ -2,6 +2,8 @@
 
 package experiment.redo.test
 
+import experiment.redo.ReadOnlyPropertyBaseStatement
+import experiment.redo.ShaderFunctionBuilderScope
 import experiment.redo.f32
 import experiment.redo.fn
 import experiment.redo.input
@@ -12,6 +14,8 @@ import experiment.redo.uniform
 import experiment.redo.vec3f
 import experiment.redo.vec4f
 import experiment.redo.vertex
+import kotlin.properties.ReadOnlyProperty
+import kotlin.reflect.KProperty
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -243,6 +247,36 @@ class ShaderTest {
                 )
             }
 
+        }.source
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `test 12 - function with multiple operations in body`() {
+        val expected = """
+            fn calculate(x: f32, y: f32) -> f32 {
+            ${tab}let a = x + y;
+            ${tab}let b = a * 2.0;
+            ${tab}let c = b - x;
+            ${tab}return c / y;
+            }
+
+        """.trimIndent()
+
+        fun ShaderFunctionBuilderScope.addOperations(x: f32, y: f32): f32 {
+            return x + y
+        }
+
+        val actual = shader {
+            val calculate by fn<f32, f32, f32> {
+                val x by input<f32>()
+                val y by input<f32>()
+
+                val result = addOperations(x, y)
+
+                returning(result)
+            }
         }.source
 
         assertEquals(expected, actual)
