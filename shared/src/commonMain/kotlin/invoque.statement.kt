@@ -7,7 +7,7 @@ internal fun invoqueStatement(
 ) {
     InvoqueStatement(scope,
         functionName,
-        // TODO: add type checking if needed, but I think that cover
+        // TODO: add type checking if needed, but I think that cover by DSL
         parameters.map { scope.pop() }.reversed()
     ).addToScope()
 }
