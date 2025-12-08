@@ -5,7 +5,7 @@ comprehensive guidelines, standards, and best practices for contributing to and 
 
 ## Project Structure
 ```
-shared/
+GPUShader/
 ├── src/
 │   ├── commonGenerated/         # Generated code from gradle task
 │   │   └── kotlin/              
